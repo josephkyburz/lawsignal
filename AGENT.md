@@ -3,6 +3,12 @@
 Last updated: 2026-04-10
 Branch: `main`
 
+> Roadmap sync (2026-04-10): Phase 0 closed out — we migrated to a full
+> Cloudflare Worker (not Pages), docs are written, skills are in place,
+> and migrations 0001–0003 are in `apps/lawsignal-worker/migrations/`.
+> Phase 1.1 (ABA 509) has code + generated wikis but remote D1 apply is
+> unverified. See "Current focus" below.
+
 CLAUDE.md is the source of truth for architecture, safety rules, conventions,
 and the ingestion pipeline. This file is the roadmap + LawSignal-specific
 operating rules. Read CLAUDE.md first.
@@ -113,21 +119,39 @@ Before recommending or editing:
 
 ---
 
+## Current focus
+
+**Gating task before any new ingestion**: verify ABA 509 has actually
+landed in remote D1. The ingest script (`scripts/ingest/aba509.ts`)
+writes `scripts/output/aba509_ingest.sql` (gitignored) and batches it
+to `wrangler d1 execute --remote`, but we have no committed evidence
+the last run succeeded end-to-end. We do have 196 generated wikis in
+`data/schools/`, so the parse + wiki-write path is proven.
+
+Checklist:
+- [ ] `npm run ingest:aba509:dry` — regenerate SQL, confirm school
+      count matches wiki count (should be ~196)
+- [ ] `npx wrangler d1 execute lawsignal-db --remote --command "SELECT COUNT(*) FROM schools"` — expect ~196
+- [ ] `SELECT COUNT(*) FROM observations WHERE source_name = 'ABA 509'` — expect ~40/school
+- [ ] If counts are low, re-run `npm run ingest:aba509` and watch the batch apply
+- [ ] Run `wiki-health-check.md` skill over `data/schools/*.md`
+- [ ] Only then move to US News (Phase 1.2)
+
 ## Roadmap
 
-### Phase 0 — Foundation (current)
+### Phase 0 — Foundation ✅
 
 - [x] Project scaffold (Vite + React + Tailwind v4 + same design system)
 - [x] D1 database created (`lawsignal-db`, ID `0597ab0f-eda5-45c8-adb6-dc8a44f93cea`)
 - [x] Schema: `schools`, `school_metrics`, `school_identities`, `observations`, `variables`, `schools_raw_sources`, app tables
 - [x] Ingestion pipeline skeleton (`scripts/lib/`, `scripts/ingest/aba509.ts`)
-- [x] Cloudflare Pages Function (feedback, supporters, reviews, health)
+- [x] Cloudflare **Worker** (`apps/lawsignal-worker/`) serving SPA + `/api/*` routes — migrated from Pages Functions (commit 2580fef)
 - [x] GitHub Actions deploy workflow
 - [x] Landing page with editorial design system
-- [ ] Apply schema to D1 (`migrations/0001_school_schema.sql` + `workers/schema.sql`)
-- [ ] Create Cloudflare Pages project, verify deploy
-- [ ] Write `docs/DESIGN.md`, `docs/IDENTITY.md`, `docs/PHILOSOPHY.md`
-- [ ] Set up `.claude/` skills + settings
+- [x] Migrations 0001–0003 in `apps/lawsignal-worker/migrations/` (schema, culture+academics, considerations-broad variables)
+- [x] Custom domain `law.firmsignal.co` wired via Worker production env
+- [x] Editorial docs: `docs/DESIGN.md`, `IDENTITY.md`, `PHILOSOPHY.md`, `DECISIONS.md`, `RESEARCH_VARIABLES.md` (+V2), `DECISION_VARIABLES.md`, `DECISION_ANALYSIS.md`
+- [x] `.claude/` skills + memory conventions in place
 
 ### Phase 1 — Data Ingestion (the real work)
 
@@ -135,11 +159,13 @@ Before recommending or editing:
 
 Order matters. Each source builds on the identity spine the previous one created.
 
-1. **ABA 509 Disclosures** — FIRST. This is the canonical source. Creates the school registry (all ~200 ABA schools), establishes the identity spine (`school_identities`), and populates the bulk of `school_metrics` and `observations`. Every other source matches against this.
-   - Scrape/download the ABA compilation data
-   - Parse into `Aba509Record` (Zod-validated)
-   - Emit: schools, school_identities, school_metrics, observations, wiki markdown
-   - Target: ~200 schools, ~40+ variables per school
+1. **ABA 509 Disclosures** — 🟡 in progress. Canonical source. Creates the school registry, identity spine (`school_identities`), bulk of `school_metrics` and `observations`. Every other source matches against this.
+   - [x] Download ABA compilation XLSX + scrape employment JSON → `data/raw/aba509/`
+   - [x] Zod validator (`scripts/lib/validators/aba509.ts`)
+   - [x] Ingest script with batched D1 apply (`scripts/ingest/aba509.ts`, commits 681e9ad, 19db065)
+   - [x] 196 wikis generated in `data/schools/`
+   - [ ] **Verify remote D1 state matches wikis** (see "Current focus" above)
+   - [ ] Wiki health check pass
 
 2. **US News Rankings** — matches against ABA spine. Adds `usnews_rank`, `usnews_peer_score`, `usnews_lawyer_score`, specialty rankings.
 
