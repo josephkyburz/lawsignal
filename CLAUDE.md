@@ -1,34 +1,42 @@
 # LawSignal
 
-Law school research and decision tool at law.firmsignal.co. React SPA with Vite build, deployed to Cloudflare Pages. Sibling project to FirmSignal (firmsignal.co).
+Law school research and decision tool at law.firmsignal.co. Monorepo: React SPA + Cloudflare Worker + D1. Sibling to FirmSignal (firmsignal.co) and ClerkSignal (clerk.firmsignal.co).
 
 ## Architecture
 
 ### Stack
-- React 18 + Vite + Tailwind CSS v4 (same stack as FirmSignal)
-- Cloudflare Pages + D1 + Pages Functions
+- React 18 + Vite + Tailwind CSS v4 (same stack as FirmSignal/ClerkSignal)
+- Cloudflare Worker + D1 (NOT Pages Functions — full Worker with ASSETS binding)
 - TypeScript ingestion pipeline (tsx, Zod validators)
 - Same editorial design system: Cormorant Garamond / Crimson Pro / JetBrains Mono / paper-ink palette
 
-### Frontend
-- `src/App.jsx` — main app component
-- `src/data/schools.js` — law school dataset (split into separate Vite chunk)
-- `src/styles.css` — Tailwind CSS + component styles
-- `src/main.jsx` — entry point, ErrorBoundary
-- `src/components/` — extracted components (ui, layout, filters, priorities, schools)
-- `src/hooks/` — custom React hooks
-- `src/lib/` — pure logic (scoring, sharing, constants)
-- `src/pages/` — static pages (Privacy, Terms, Support)
+### Monorepo Layout
+- `apps/lawsignal-web/` — Vite React SPA
+  - `src/App.jsx` — main app component
+  - `src/data/schools.js` — law school dataset (split into separate Vite chunk)
+  - `src/styles.css` — Tailwind CSS + component styles
+  - `src/main.jsx` — entry point, ErrorBoundary
+  - `src/components/` — extracted components (ui, layout, filters, priorities, schools)
+  - `src/hooks/` — custom React hooks
+  - `src/lib/` — pure logic (scoring, sharing, constants)
+  - `src/pages/` — static pages (Privacy, Terms, Support)
+- `apps/lawsignal-worker/` — Cloudflare Worker
+  - `src/index.js` — serves SPA + `/api/*` routes (health, schools, variables, feedback, reviews, supporters)
+  - `wrangler.jsonc` — Worker config with ASSETS + D1 bindings, custom domain `law.firmsignal.co`
+  - `migrations/` — D1 schema migrations
 
-### Backend
-- `functions/api/[[route]].js` — Cloudflare Pages Function (D1 analytics, feedback, reviews, supporters)
-- D1 database binding: `DB` — must be configured in Cloudflare Pages dashboard
+### Infrastructure
+- Worker: `lawsignal` (deployed to `lawsignal.josephkyburz.workers.dev`)
+- Custom domain: `law.firmsignal.co` (production env)
+- D1: `lawsignal-db`, id `0597ab0f-eda5-45c8-adb6-dc8a44f93cea`
+- Assets dir (relative to worker): `../lawsignal-web/dist`
 
 ### Data Pipeline
 - `scripts/ingest/` — per-source ingest scripts (TypeScript, run via tsx)
 - `scripts/lib/` — shared ingestion libs (sql-helpers, slug, school-matcher, sources, wiki-writer, validators)
 - `data/schools/` — per-school wiki markdown files (generated, not hand-edited)
-- `migrations/` — D1 schema migrations
+- `data/raw/` — raw source data inbox (drop files here for ingestion)
+- `data/research/` — decision research material (informs schema + scoring)
 
 ## Ingestion Pipeline
 
@@ -67,17 +75,20 @@ The scoring system will weight schools across these dimensions (parallel to Firm
 2. **Employment Outcomes** — BigLaw+FC rate, JD-required rate, unemployment, bar passage
 3. **Cost & Value** — tuition, scholarships, COL, median debt, debt-to-income
 4. **Geographic Strength** — where graduates practice, regional dominance, portability
-5. **Academic Environment** — clinics, journals, faculty ratio, class size, pedagogy
+5. **Academic Quality** — clinics, journals, faculty ratio, class size, pedagogy
 6. **Prestige & Reputation** — peer assessment, lawyer/judge assessment, specialty rankings
-7. **Quality of Life** — location, class size, student satisfaction, housing
-8. **Career Flexibility** — breadth of outcomes, clerkship rate, PI placement, academia
+7. **Culture & Community** — grading system, collaboration vs. competition, vet community, diversity
+8. **Quality of Life** — location, class size, student satisfaction, housing
+9. **Growth & Fit** — comfort zone disruption, excitement, what person it makes you (the real tiebreaker)
 
 ## Build & Deploy
 
-- Build: `npx vite build` — produces `dist/`
-- Deploy: `npx wrangler pages deploy dist --project-name=lawsignal`
+- `npm run lawsignal:web:build` — builds Vite SPA into `apps/lawsignal-web/dist/`
+- `npm run lawsignal:dev` — local Worker dev server (serves SPA + API)
+- `npm run lawsignal:deploy` — builds web + deploys Worker to production
+- `npm run lawsignal:check` — dry-run deploy (safety check)
 - CI: GitHub Actions on push to main (`.github/workflows/deploy.yml`)
-- Domain: law.firmsignal.co (Cloudflare Pages custom domain)
+- Domain: `law.firmsignal.co` (Worker custom domain, production env)
 
 ## Conventions
 

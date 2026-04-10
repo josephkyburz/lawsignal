@@ -9,3 +9,4 @@ dist/
 scripts/output/*.sql
 scripts/output/*.jsonl
 scripts/output/*.csv
+*.DS_Store

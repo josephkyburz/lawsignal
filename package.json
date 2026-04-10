@@ -3,10 +3,16 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "description": "Law school research and decision tool (law.firmsignal.co)",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "lawsignal:web:install": "npm --prefix apps/lawsignal-web install",
+    "lawsignal:web:dev": "npm --prefix apps/lawsignal-web run dev",
+    "lawsignal:web:build": "npm --prefix apps/lawsignal-web run build",
+    "lawsignal:dev": "wrangler dev --config apps/lawsignal-worker/wrangler.jsonc",
+    "lawsignal:check": "wrangler deploy --dry-run --config apps/lawsignal-worker/wrangler.jsonc",
+    "lawsignal:deploy": "npm run lawsignal:web:build && wrangler deploy --env production --config apps/lawsignal-worker/wrangler.jsonc",
+    "lawsignal:db:init": "wrangler d1 execute lawsignal-db --remote --file=apps/lawsignal-worker/migrations/0001_school_schema.sql",
+    "lawsignal:db:seed": "wrangler d1 execute lawsignal-db --remote --file=apps/lawsignal-worker/migrations/schema.sql",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "ingest:aba509": "tsx scripts/ingest/aba509.ts",
     "ingest:aba509:dry": "tsx scripts/ingest/aba509.ts --dry-run",
@@ -16,20 +22,11 @@
     "ingest:lst:dry": "tsx scripts/ingest/lst.ts --dry-run",
     "seed:variables": "tsx scripts/seed-variables.ts"
   },
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.2.2",
     "@types/node": "^25.5.2",
-    "@vitejs/plugin-react": "^4.3.4",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "tailwindcss": "^4.2.2",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2",
-    "vite": "^6.0.7",
+    "wrangler": "^4.81.0",
     "zod": "^4.3.6"
   }
 }
