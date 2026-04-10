@@ -49,7 +49,42 @@ For every task:
 - Never load large JSON data files into context directly.
 - For `scripts/lib/` files: grep for the specific function, don't scan.
 
-## 5. Failure Handling
+## 5. Skill Routing
+
+| Trigger | Skill |
+|---|---|
+| New source ingestion | `source-ingestion-runbook.md` |
+| Editing an existing school's data | `school-audit.md` |
+| Schema change in D1 / migrations | `schema-migration.md` |
+| Runtime bug, can't reproduce | `systematic-debugging.md` |
+| PR review prep | `pr-review-synthesizer.md` |
+| Cloudflare Pages build red | `ci-failure-analyzer.md` + `cloudflare-pages-deployment-checker.md` |
+| Dependency bump | `safe-dependency-upgrade.md` |
+| Test coverage planning | `test-gap-finder.md` |
+| Trust/clarity review of UI copy | `trust-and-clarity-ui-review.md` |
+| Context-building for a new task area | `token-efficient-context-builder.md` |
+| Recurring patterns in commit history | `skill-synthesis.md` |
+| Data quality / link-rot audit | `wiki-health-check.md` |
+
+## 5a. Memory Conventions
+
+Cross-session state lives in `.claude/memory/`. See CLAUDE.md §Memory for file descriptions.
+
+**Session start protocol:**
+1. The `session-summary.sh` hook loads recent session context automatically.
+2. If starting a new task area, scan `open-questions.md` for relevant parked items.
+3. If continuing prior work, check `skills-learned.md` for recent pattern tags matching your task.
+
+**Session end protocol:**
+1. Park any unresolved questions in `open-questions.md`.
+2. Record non-obvious decisions in `decisions.md`.
+3. The `skill-learner.sh` hook auto-logs commit patterns — no manual action needed.
+
+**Synthesis cadence:**
+- After every ~10 new entries in `skills-learned.md`, invoke `skill-synthesis.md` to check for emerging patterns.
+- After every ingestion pass, invoke `wiki-health-check.md` to verify integrity.
+
+## 6. Failure Handling
 
 - **Build fails** → read the actual error; don't retry blindly.
 - **D1 rejects `BEGIN`/`COMMIT`** → remove them; rely on `NOT EXISTS` guards.

@@ -89,6 +89,46 @@ The scoring system will weight schools across these dimensions (parallel to Firm
 - Same ornament pattern for section dividers
 - Same choice architecture: priorities before options, editable scores, no single "best" answer
 
+## Skills (`.claude/skills/`)
+
+- `school-audit.md` — structured workflow for auditing/editing existing school data
+- `source-ingestion-runbook.md` — run or build a new ingestion pipeline for a school data source
+- `schema-migration.md` — create or apply a D1 schema migration
+- `skill-synthesis.md` — periodic review of skills-learned log, proposes new skills
+- `wiki-health-check.md` — graph integrity checker for school wikis
+- `systematic-debugging.md` — deterministic bug isolation
+- `ci-failure-analyzer.md` — root-cause build/deploy failures
+- `cloudflare-pages-deployment-checker.md` — verify CF Pages wiring
+- `safe-dependency-upgrade.md` — controlled dependency upgrades
+- `test-gap-finder.md` — identify highest-risk missing tests
+- `pr-review-synthesizer.md` — extract key risks from PRs
+- `trust-and-clarity-ui-review.md` — review UI copy for clarity and trust
+- `token-efficient-context-builder.md` — construct minimal context for tasks
+
+## Memory (`.claude/memory/`)
+
+Persistent cross-session state. Files here survive `/clear` and context compaction.
+
+- `skills-learned.md` — append-only log of commit patterns, auto-populated by `skill-learner.sh` hook
+- `open-questions.md` — parking lot for unresolved items noticed during development
+- `decisions.md` — session-level decisions that don't rise to formal docs entries
+
+### Conventions
+- **Write early, read at session start.** Log patterns as you go; review the memory files when starting a new task area.
+- **Tag patterns consistently.** Tags: `ingest`, `ui`, `api`, `scoring`, `data-fix`, `docs`, `schema`, `infra`.
+- **Promote or close.** Open questions older than 3 sessions should be promoted to a roadmap item in AGENT.md or closed with a one-line resolution.
+
+## Engineering Principles
+
+1. **Keep it simple.** Prefer the boring solution. Three similar lines > one premature abstraction.
+2. **Make it work first, make it right later.** Ship the ugly version. Refactor once you understand the actual shape.
+3. **Read before you write.** Understand existing code, conventions, and invariants before proposing changes.
+4. **Small, verifiable steps.** Each commit should be independently deployable and revertable.
+5. **Don't guess — measure.** When unsure whether code works, run it.
+6. **Context is the bottleneck.** Optimize for keeping the main context clean: dispatch noisy work to subagents.
+7. **Explain the why, not the what.** Commit messages and docs should explain intent and constraints.
+8. **Trust the tools, verify the output.** Use AI for speed but verify correctness manually.
+
 ## Safety Rules
 
 1. **Never modify `computeScore()` logic** — only move it (once it exists)
