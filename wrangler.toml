@@ -5,10 +5,9 @@ compatibility_date = "2026-04-09"
 [vars]
 NODE_VERSION = "22"
 
-[env.production.vars]
-NODE_VERSION = "22"
-
-[[env.production.d1_databases]]
+# D1 binding — available in Pages Functions as context.env.DB
+# Works for both local dev (wrangler pages dev) and production deploy.
+[[d1_databases]]
 database_id   = "0597ab0f-eda5-45c8-adb6-dc8a44f93cea"
 binding       = "DB"
 database_name = "lawsignal-db"
