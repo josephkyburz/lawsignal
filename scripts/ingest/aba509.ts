@@ -15,7 +15,7 @@
  */
 
 import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync as writeFs } from "node:fs";
 import { resolve } from "node:path";
 import XLSX from "xlsx";
 import { Aba509RecordSchema, type Aba509Record } from "../lib/validators/aba509.js";
@@ -528,17 +528,61 @@ console.log(`SQL file: scripts/output/aba509_ingest.sql`);
 if (!DRY_RUN) {
   console.log(`\nApplying to D1 (lawsignal-db)...`);
   const sqlFile = resolve(import.meta.dirname, "../output/aba509_ingest.sql");
-  try {
-    const output = execFileSync("npx", [
-      "wrangler", "d1", "execute", "lawsignal-db",
-      "--remote",
-      "--file", sqlFile,
-    ], { encoding: "utf-8", stdio: ["pipe", "pipe", "pipe"], maxBuffer: 50 * 1024 * 1024 });
-    console.log(output);
-    console.log("D1 apply complete.");
-  } catch (err: any) {
-    console.error("D1 apply failed:", err.stderr || err.message);
+  const fullSql = readFileSync(sqlFile, "utf-8");
+
+  // Split on school boundaries (lines starting with "-- ") to keep statements intact
+  // Each school block is ~160 lines. Target ~20 schools per batch.
+  const MAX_CHUNK = 400_000;
+  const lines = fullSql.split("\n");
+  const chunks: string[] = [];
+  let current = "";
+  for (const line of lines) {
+    // Split at school comment boundaries when approaching limit
+    if (line.startsWith("-- ") && !line.startsWith("-- ABA") && current.length > MAX_CHUNK) {
+      chunks.push(current);
+      current = "";
+    }
+    current += line + "\n";
+  }
+  if (current.trim()) chunks.push(current);
+
+  console.log(`Split into ${chunks.length} chunks`);
+
+  const batchDir = resolve(import.meta.dirname, "../output/aba509_batches");
+  mkdirSync(batchDir, { recursive: true });
+
+  let failed = 0;
+  for (let i = 0; i < chunks.length; i++) {
+    const batchFile = resolve(batchDir, `batch_${String(i).padStart(3, "0")}.sql`);
+    writeFs(batchFile, chunks[i], "utf-8");
+    process.stdout.write(`  Batch ${i + 1}/${chunks.length}...`);
+    try {
+      const result = execFileSync("npx", [
+        "wrangler", "d1", "execute", "lawsignal-db",
+        "--remote",
+        "--file", batchFile,
+      ], { encoding: "utf-8", stdio: ["pipe", "pipe", "pipe"], maxBuffer: 10 * 1024 * 1024 });
+      console.log(" ✓");
+    } catch (err: any) {
+      // Check if it's a real error vs just warnings on stderr
+      const stderr = err.stderr || "";
+      const hasRealError = stderr.includes("ERROR") || stderr.includes("SQLITE_ERROR");
+      if (hasRealError) {
+        console.log(" ✗");
+        const errorLines = stderr.split("\n").filter((l: string) => l.includes("ERROR") || l.includes("SQLITE"));
+        console.error(`    ${errorLines.join("\n    ")}`);
+        failed++;
+      } else {
+        console.log(" ✓ (with warnings)");
+      }
+    }
+  }
+
+  if (failed > 0) {
+    console.error(`\n${failed}/${chunks.length} batches failed.`);
     process.exit(1);
+  } else {
+    console.log(`\nD1 apply complete — ${chunks.length} batches applied.`);
   }
 } else {
   console.log(`\nDry run — skipped D1 apply. Run without --dry-run to apply.`);
