@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+/* ─── Editorial Typography ──────────────────────────────────────────────── */
+
+.font-display { font-family: var(--ff-d); }
+.font-body    { font-family: var(--ff-b); }
+.font-mono    { font-family: var(--ff-m); }
+
+/* ─── Ornament ──────────────────────────────────────────────────────────── */
+
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--ff-m);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.ornament::before,
+.ornament::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+/* ─── Buttons ───────────────────────────────────────────────────────────── */
+
+.next-btn {
+  font-family: var(--ff-m);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 12px 26px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 180ms var(--ease);
+}
+
+.next-btn.dark {
+  background: var(--ink);
+  color: var(--paper);
+}
+.next-btn.dark:hover {
+  background: var(--ink-2);
+  box-shadow: 0 4px 14px rgba(24, 22, 15, 0.18);
+}
+
+.next-btn.gold {
+  background: var(--gold);
+  color: var(--paper);
+}
+.next-btn.gold:hover {
+  background: var(--gold-lt);
+  box-shadow: 0 4px 14px rgba(168, 131, 42, 0.22);
+}
+
+.next-btn.ghost {
+  background: transparent;
+  color: var(--ink-3);
+  border-color: var(--rule);
+}
+.next-btn.ghost:hover {
+  background: var(--paper-2);
+  border-color: var(--rule-2);
+}
+
+/* ─── Badges / Chips ────────────────────────────────────────────────────── */
+
+.chip {
+  font-family: var(--ff-m);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 2px;
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  color: var(--ink-3);
+}
+
+.chip-gold    { background: var(--gold-pale);    border-color: var(--gold);    color: var(--gold-deep); }
+.chip-forest  { background: var(--forest-pale);  border-color: var(--forest);  color: var(--forest); }
+.chip-scarlet { background: var(--scarlet-pale); border-color: var(--scarlet); color: var(--scarlet); }
+.chip-cobalt  { background: var(--cobalt-pale);  border-color: var(--cobalt);  color: var(--cobalt); }
+
+/* ─── Score bar fill animation ──────────────────────────────────────────── */
+
+@keyframes bar-fill {
+  from { width: 0; }
+}
+
+.bar-fill {
+  animation: bar-fill 650ms var(--ease) forwards;
+}
+
+/* ─── Sheet slide-in ────────────────────────────────────────────────────── */
+
+@keyframes sheet-in {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+.sheet-enter {
+  animation: sheet-in 280ms var(--ease) forwards;
+}
+
+/* ─── Responsive ────────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .ornament { font-size: 8px; }
+  .next-btn { padding: 10px 20px; font-size: 9px; }
+}
