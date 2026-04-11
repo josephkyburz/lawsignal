@@ -1,0 +1,79 @@
+[
+  {
+    "school_name": "Stanford University",
+    "overall_rank": 1,
+    "peer_assessment_score": null,
+    "lawyer_judge_assessment_score": null,
+    "specialty_rankings": {
+      "ip": 2,
+      "international": 7,
+      "environmental": 6
+    },
+    "tier": "T6"
+  },
+  {
+    "school_name": "Yale University",
+    "overall_rank": 1,
+    "peer_assessment_score": null,
+    "lawyer_judge_assessment_score": null,
+    "specialty_rankings": {
+      "constitutional": 1,
+      "international": 4
+    },
+    "tier": "T6"
+  },
+  {
+    "school_name": "University of Chicago",
+    "overall_rank": 3,
+    "peer_assessment_score": null,
+    "lawyer_judge_assessment_score": null,
+    "specialty_rankings": {
+      "biz": 3,
+      "tax": 5
+    },
+    "tier": "T6"
+  },
+  {
+    "school_name": "University of Pennsylvania Carey",
+    "overall_rank": 4,
+    "peer_assessment_score": null,
+    "lawyer_judge_assessment_score": null,
+    "specialty_rankings": {
+      "biz": 2,
+      "health": 4
+    },
+    "tier": "T6"
+  },
+  {
+    "school_name": "Harvard University",
+    "overall_rank": 5,
+    "peer_assessment_score": null,
+    "lawyer_judge_assessment_score": null,
+    "specialty_rankings": {
+      "international": 1,
+      "constitutional": 3,
+      "tax": 4
+    },
+    "tier": "T6"
+  },
+  {
+    "school_name": "New York University",
+    "overall_rank": 8,
+    "peer_assessment_score": null,
+    "lawyer_judge_assessment_score": null,
+    "specialty_rankings": {
+      "tax": 1,
+      "international": 3,
+      "ip": 6
+    },
+    "tier": "T14"
+  },
+  {
+    "school_name": "Not An Aba School",
+    "overall_rank": 999,
+    "peer_assessment_score": null,
+    "lawyer_judge_assessment_score": null,
+    "specialty_rankings": {},
+    "tier": "other"
+  }
+]

@@ -9,5 +9,11 @@ dist/
 scripts/output/*.sql
 scripts/output/*.jsonl
 scripts/output/*.csv
+scripts/output/aba509_batches/
+scripts/output/usnews_batches/
+
+# Scraper outputs — regenerable by re-running the scrape scripts.
+data/raw/usnews/usnews_scraped.json
+
 *.DS_Store
 .playwright-cli/
