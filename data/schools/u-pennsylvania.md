@@ -16,7 +16,13 @@ canonical_name: University of Pennsylvania
 - Median GPA: 3.95 (25th: 3.77, 75th: 4.00)
 - Applicants: 8,074
 - Acceptance Rate: 8.1%
+- Yield Rate: 39.1%
 - Enrolled (1L): 254
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 8
+- 1L Transfers Out: 4
 
 ### Cost
 - Tuition (Resident): $84,492

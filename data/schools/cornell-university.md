@@ -16,7 +16,13 @@ canonical_name: Cornell University
 - Median GPA: 3.92 (25th: 3.75, 75th: 3.97)
 - Applicants: 4,608
 - Acceptance Rate: 18.2%
+- Yield Rate: 25.1%
 - Enrolled (1L): 210
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 0
+- 1L Transfers Out: 8
 
 ### Cost
 - Tuition (Resident): $85,412

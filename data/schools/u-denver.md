@@ -16,7 +16,13 @@ canonical_name: University of Denver
 - Median GPA: 3.66 (25th: 3.36, 75th: 3.80)
 - Applicants: 2,214
 - Acceptance Rate: 41.3%
+- Yield Rate: 30.9%
 - Enrolled (1L): 283
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 5
+- 1L Transfers Out: 12
 
 ### Cost
 - Tuition (Resident): $63,812

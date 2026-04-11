@@ -16,7 +16,13 @@ canonical_name: Southwestern Law School
 - Median GPA: 3.51 (25th: 3.23, 75th: 3.72)
 - Applicants: 3,584
 - Acceptance Rate: 36.5%
+- Yield Rate: 34.7%
 - Enrolled (1L): 458
+
+### Retention
+- 1L Attrition: 13.0%
+- Transfers In: 0
+- 1L Transfers Out: 9
 
 ### Cost
 - Tuition (Resident): $63,160

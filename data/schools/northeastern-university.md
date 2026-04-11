@@ -16,7 +16,13 @@ canonical_name: Northeastern University
 - Median GPA: 3.77 (25th: 3.61, 75th: 3.86)
 - Applicants: 5,652
 - Acceptance Rate: 24.2%
+- Yield Rate: 20.4%
 - Enrolled (1L): 280
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 4
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $65,850

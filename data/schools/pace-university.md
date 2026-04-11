@@ -16,7 +16,13 @@ canonical_name: Pace University
 - Median GPA: 3.54 (25th: 3.31, 75th: 3.74)
 - Applicants: 2,293
 - Acceptance Rate: 44.1%
+- Yield Rate: 31.8%
 - Enrolled (1L): 323
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 2
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $57,756

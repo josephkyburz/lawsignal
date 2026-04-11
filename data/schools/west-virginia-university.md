@@ -16,7 +16,13 @@ canonical_name: West Virginia University
 - Median GPA: 3.65 (25th: 3.34, 75th: 3.89)
 - Applicants: 590
 - Acceptance Rate: 40.3%
+- Yield Rate: 47.9%
 - Enrolled (1L): 114
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 1
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $27,774

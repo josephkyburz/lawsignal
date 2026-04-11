@@ -16,7 +16,13 @@ canonical_name: University of North Dakota
 - Median GPA: 3.48 (25th: 3.24, 75th: 3.75)
 - Applicants: 401
 - Acceptance Rate: 63.1%
+- Yield Rate: 38.3%
 - Enrolled (1L): 97
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 2
+- 1L Transfers Out: 10
 
 ### Cost
 - Living Expenses: $20,616

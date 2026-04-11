@@ -16,7 +16,13 @@ canonical_name: St. John's University
 - Median GPA: 3.81 (25th: 3.44, 75th: 3.91)
 - Applicants: 4,417
 - Acceptance Rate: 23.0%
+- Yield Rate: 23.4%
 - Enrolled (1L): 238
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 10
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $76,742

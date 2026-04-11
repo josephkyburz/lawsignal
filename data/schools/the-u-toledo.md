@@ -16,7 +16,13 @@ canonical_name: The University of Toledo
 - Median GPA: 3.53 (25th: 3.37, 75th: 3.79)
 - Applicants: 732
 - Acceptance Rate: 52.5%
+- Yield Rate: 32.5%
 - Enrolled (1L): 125
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 0
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $29,598

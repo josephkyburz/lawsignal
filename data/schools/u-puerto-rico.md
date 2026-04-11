@@ -16,7 +16,13 @@ canonical_name: University of Puerto Rico
 - Median GPA: 3.77 (25th: 3.57, 75th: 3.90)
 - Applicants: 383
 - Acceptance Rate: 39.7%
+- Yield Rate: 79.6%
 - Enrolled (1L): 122
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 5
+- 1L Transfers Out: 1
 
 ### Cost
 - Living Expenses: $23,501

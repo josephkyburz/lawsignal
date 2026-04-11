@@ -16,7 +16,13 @@ canonical_name: Capital University Law School
 - Median GPA: 3.44 (25th: 3.07, 75th: 3.66)
 - Applicants: 874
 - Acceptance Rate: 65.9%
+- Yield Rate: 30.2%
 - Enrolled (1L): 178
+
+### Retention
+- 1L Attrition: 11.0%
+- Transfers In: 2
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $45,456

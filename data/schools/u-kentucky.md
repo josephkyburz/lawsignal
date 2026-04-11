@@ -16,7 +16,13 @@ canonical_name: University of Kentucky
 - Median GPA: 3.72 (25th: 3.52, 75th: 3.90)
 - Applicants: 1,236
 - Acceptance Rate: 40.8%
+- Yield Rate: 28.4%
 - Enrolled (1L): 143
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 3
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $27,301

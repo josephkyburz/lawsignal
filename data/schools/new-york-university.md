@@ -16,7 +16,13 @@ canonical_name: New York University
 - Median GPA: 3.92 (25th: 3.81, 75th: 3.97)
 - Applicants: 10,546
 - Acceptance Rate: 13.4%
+- Yield Rate: 30.4%
 - Enrolled (1L): 430
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 42
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $87,214

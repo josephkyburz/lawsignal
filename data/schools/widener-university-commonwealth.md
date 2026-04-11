@@ -16,7 +16,13 @@ canonical_name: Widener University Commonwealth Law School
 - Median GPA: 3.33 (25th: 2.98, 75th: 3.64)
 - Applicants: 909
 - Acceptance Rate: 60.4%
+- Yield Rate: 28.2%
 - Enrolled (1L): 156
+
+### Retention
+- 1L Attrition: 18.0%
+- Transfers In: 0
+- 1L Transfers Out: 6
 
 ### Cost
 - Living Expenses: $32,862

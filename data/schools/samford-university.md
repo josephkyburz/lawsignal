@@ -16,7 +16,13 @@ canonical_name: Samford University
 - Median GPA: 3.63 (25th: 3.42, 75th: 3.84)
 - Applicants: 925
 - Acceptance Rate: 49.0%
+- Yield Rate: 37.1%
 - Enrolled (1L): 168
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 2
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $47,334

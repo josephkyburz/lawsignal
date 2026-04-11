@@ -16,7 +16,13 @@ canonical_name: The University of Kansas
 - Median GPA: 3.85 (25th: 3.58, 75th: 3.95)
 - Applicants: 1,172
 - Acceptance Rate: 39.1%
+- Yield Rate: 25.1%
 - Enrolled (1L): 115
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 1
+- 1L Transfers Out: 1
 
 ### Cost
 - Living Expenses: $20,238

@@ -16,7 +16,13 @@ canonical_name: The University of Chicago
 - Median GPA: 3.97 (25th: 3.87, 75th: 4.00)
 - Applicants: 6,581
 - Acceptance Rate: 9.7%
+- Yield Rate: 29.8%
 - Enrolled (1L): 191
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 12
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $84,906

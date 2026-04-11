@@ -16,7 +16,13 @@ canonical_name: The University of New Mexico
 - Median GPA: 3.56 (25th: 3.12, 75th: 3.82)
 - Applicants: 640
 - Acceptance Rate: 41.4%
+- Yield Rate: 38.5%
 - Enrolled (1L): 103
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 1
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $21,020

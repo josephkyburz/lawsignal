@@ -16,7 +16,13 @@ canonical_name: The University of Akron
 - Median GPA: 3.51 (25th: 3.22, 75th: 3.76)
 - Applicants: 762
 - Acceptance Rate: 58.5%
+- Yield Rate: 44.6%
 - Enrolled (1L): 201
+
+### Retention
+- 1L Attrition: 8.0%
+- Transfers In: 3
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $26,649

@@ -16,7 +16,13 @@ canonical_name: University of San Diego
 - Median GPA: 3.84 (25th: 3.59, 75th: 3.92)
 - Applicants: 4,241
 - Acceptance Rate: 23.5%
+- Yield Rate: 24.0%
 - Enrolled (1L): 239
+
+### Retention
+- 1L Attrition: 9.0%
+- Transfers In: 5
+- 1L Transfers Out: 9
 
 ### Cost
 - Tuition (Resident): $67,751

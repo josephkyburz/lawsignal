@@ -16,7 +16,13 @@ canonical_name: University of Iowa
 - Median GPA: 3.78 (25th: 3.62, 75th: 3.92)
 - Applicants: 1,247
 - Acceptance Rate: 44.4%
+- Yield Rate: 28.2%
 - Enrolled (1L): 156
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 1
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $33,489

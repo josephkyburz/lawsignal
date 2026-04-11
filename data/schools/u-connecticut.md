@@ -16,7 +16,13 @@ canonical_name: University of Connecticut
 - Median GPA: 3.78 (25th: 3.55, 75th: 3.90)
 - Applicants: 2,299
 - Acceptance Rate: 20.1%
+- Yield Rate: 32.3%
 - Enrolled (1L): 149
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 2
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $31,600

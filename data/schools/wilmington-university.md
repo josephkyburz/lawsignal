@@ -16,7 +16,13 @@ canonical_name: Wilmington University School of Law
 - Median GPA: 3.13 (25th: 2.67, 75th: 3.49)
 - Applicants: 273
 - Acceptance Rate: 52.0%
+- Yield Rate: 48.6%
 - Enrolled (1L): 73
+
+### Retention
+- 1L Attrition: 20.0%
+- Transfers In: 3
+- 1L Transfers Out: 0
 
 ### Cost
 - Living Expenses: $24,622

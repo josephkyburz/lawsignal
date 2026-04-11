@@ -16,7 +16,13 @@ canonical_name: Charleston School of Law
 - Median GPA: 3.51 (25th: 3.26, 75th: 3.75)
 - Applicants: 2,215
 - Acceptance Rate: 50.2%
+- Yield Rate: 21.3%
 - Enrolled (1L): 239
+
+### Retention
+- 1L Attrition: 8.0%
+- Transfers In: 9
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $49,684

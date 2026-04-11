@@ -16,7 +16,13 @@ canonical_name: Lincoln Memorial University
 - Median GPA: 3.44 (25th: 3.08, 75th: 3.68)
 - Applicants: 828
 - Acceptance Rate: 52.2%
+- Yield Rate: 37.5%
 - Enrolled (1L): 163
+
+### Retention
+- 1L Attrition: 15.0%
+- Transfers In: 6
+- 1L Transfers Out: 3
 
 ### Cost
 - Living Expenses: $28,325

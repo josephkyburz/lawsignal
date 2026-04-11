@@ -16,7 +16,13 @@ canonical_name: University of California-Irvine
 - Median GPA: 3.80 (25th: 3.59, 75th: 3.90)
 - Applicants: 3,720
 - Acceptance Rate: 14.9%
+- Yield Rate: 33.9%
 - Enrolled (1L): 188
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 5
+- 1L Transfers Out: 14
 
 ### Cost
 - Tuition (Resident): $61,288

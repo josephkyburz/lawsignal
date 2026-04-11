@@ -16,7 +16,13 @@ canonical_name: University of New Hampshire
 - Median GPA: 3.50 (25th: 3.10, 75th: 3.72)
 - Applicants: 1,455
 - Acceptance Rate: 52.0%
+- Yield Rate: 32.4%
 - Enrolled (1L): 245
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 2
+- 1L Transfers Out: 9
 
 ### Cost
 - Tuition (Resident): $42,348

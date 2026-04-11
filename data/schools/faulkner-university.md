@@ -16,7 +16,13 @@ canonical_name: Faulkner University
 - Median GPA: 3.33 (25th: 2.99, 75th: 3.66)
 - Applicants: 620
 - Acceptance Rate: 53.9%
+- Yield Rate: 47.6%
 - Enrolled (1L): 167
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 0
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $40,400

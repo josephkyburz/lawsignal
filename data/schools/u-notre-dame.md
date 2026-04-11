@@ -16,7 +16,13 @@ canonical_name: University of Notre Dame
 - Median GPA: 3.89 (25th: 3.78, 75th: 3.95)
 - Applicants: 3,579
 - Acceptance Rate: 16.1%
+- Yield Rate: 31.6%
 - Enrolled (1L): 182
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 10
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $73,950

@@ -16,7 +16,13 @@ canonical_name: University of Missouri-Kansas City
 - Median GPA: 3.65 (25th: 3.33, 75th: 3.80)
 - Applicants: 714
 - Acceptance Rate: 45.9%
+- Yield Rate: 43.3%
 - Enrolled (1L): 142
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 0
+- 1L Transfers Out: 2
 
 ### Cost
 - Living Expenses: $23,924

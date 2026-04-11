@@ -16,7 +16,13 @@ canonical_name: George Mason University
 - Median GPA: 3.93 (25th: 3.55, 75th: 3.98)
 - Applicants: 2,792
 - Acceptance Rate: 15.9%
+- Yield Rate: 35.9%
 - Enrolled (1L): 159
+
+### Retention
+- 1L Attrition: 5.0%
+- Transfers In: 26
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $27,832

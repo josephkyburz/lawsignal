@@ -16,7 +16,13 @@ canonical_name: William & Mary
 - Median GPA: 3.82 (25th: 3.53, 75th: 3.94)
 - Applicants: 2,176
 - Acceptance Rate: 22.0%
+- Yield Rate: 37.9%
 - Enrolled (1L): 181
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 3
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $46,102

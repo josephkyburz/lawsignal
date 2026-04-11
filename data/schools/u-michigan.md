@@ -16,7 +16,13 @@ canonical_name: University of Michigan
 - Median GPA: 3.88 (25th: 3.74, 75th: 3.95)
 - Applicants: 8,982
 - Acceptance Rate: 8.6%
+- Yield Rate: 42.7%
 - Enrolled (1L): 329
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 9
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $76,680

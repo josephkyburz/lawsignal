@@ -16,7 +16,13 @@ canonical_name: Lewis & Clark Law School
 - Median GPA: 3.59 (25th: 3.24, 75th: 3.79)
 - Applicants: 1,133
 - Acceptance Rate: 54.7%
+- Yield Rate: 27.6%
 - Enrolled (1L): 171
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 3
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $61,484

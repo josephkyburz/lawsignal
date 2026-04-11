@@ -16,7 +16,13 @@ canonical_name: Howard University
 - Median GPA: 3.63 (25th: 3.40, 75th: 3.80)
 - Applicants: 2,428
 - Acceptance Rate: 24.1%
+- Yield Rate: 29.1%
 - Enrolled (1L): 172
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 0
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $41,412

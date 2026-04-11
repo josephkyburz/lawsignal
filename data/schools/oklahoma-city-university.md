@@ -16,7 +16,13 @@ canonical_name: Oklahoma City University
 - Median GPA: 3.56 (25th: 3.21, 75th: 3.78)
 - Applicants: 715
 - Acceptance Rate: 51.6%
+- Yield Rate: 42.0%
 - Enrolled (1L): 156
+
+### Retention
+- 1L Attrition: 8.0%
+- Transfers In: 0
+- 1L Transfers Out: 3
 
 ### Cost
 - Living Expenses: $28,305

@@ -16,7 +16,13 @@ canonical_name: American University
 - Median GPA: 3.63 (25th: 3.32, 75th: 3.75)
 - Applicants: 5,952
 - Acceptance Rate: 33.3%
+- Yield Rate: 20.2%
 - Enrolled (1L): 400
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 13
+- 1L Transfers Out: 51
 
 ### Cost
 - Tuition (Resident): $69,172

@@ -16,7 +16,13 @@ canonical_name: Nova Southeastern University
 - Median GPA: 3.52 (25th: 3.34, 75th: 3.71)
 - Applicants: 1,458
 - Acceptance Rate: 47.3%
+- Yield Rate: 32.2%
 - Enrolled (1L): 224
+
+### Retention
+- 1L Attrition: 5.0%
+- Transfers In: 0
+- 1L Transfers Out: 9
 
 ### Cost
 - Tuition (Resident): $50,710

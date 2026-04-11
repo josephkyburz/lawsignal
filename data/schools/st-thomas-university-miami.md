@@ -16,7 +16,13 @@ canonical_name: St. Thomas University (Miami)
 - Median GPA: 3.42 (25th: 3.12, 75th: 3.65)
 - Applicants: 1,771
 - Acceptance Rate: 60.2%
+- Yield Rate: 38.3%
 - Enrolled (1L): 424
+
+### Retention
+- 1L Attrition: 11.0%
+- Transfers In: 4
+- 1L Transfers Out: 17
 
 ### Cost
 - Tuition (Resident): $47,578

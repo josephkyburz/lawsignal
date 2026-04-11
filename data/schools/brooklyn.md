@@ -16,7 +16,13 @@ canonical_name: Brooklyn Law School
 - Median GPA: 3.59 (25th: 3.37, 75th: 3.75)
 - Applicants: 4,600
 - Acceptance Rate: 44.0%
+- Yield Rate: 20.4%
 - Enrolled (1L): 414
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 5
+- 1L Transfers Out: 24
 
 ### Cost
 - Tuition (Resident): $76,946

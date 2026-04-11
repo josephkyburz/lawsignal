@@ -16,7 +16,13 @@ canonical_name: Florida International University
 - Median GPA: 3.80 (25th: 3.66, 75th: 3.89)
 - Applicants: 3,100
 - Acceptance Rate: 18.8%
+- Yield Rate: 30.1%
 - Enrolled (1L): 175
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 15
+- 1L Transfers Out: 4
 
 ### Cost
 - Living Expenses: $33,176

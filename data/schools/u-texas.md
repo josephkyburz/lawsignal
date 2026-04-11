@@ -16,7 +16,13 @@ canonical_name: University of Texas
 - Median GPA: 3.89 (25th: 3.75, 75th: 3.96)
 - Applicants: 6,297
 - Acceptance Rate: 14.0%
+- Yield Rate: 41.0%
 - Enrolled (1L): 361
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 8
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $38,236

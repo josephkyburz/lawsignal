@@ -16,7 +16,13 @@ canonical_name: The University of Arizona
 - Median GPA: 3.78 (25th: 3.54, 75th: 3.90)
 - Applicants: 1,781
 - Acceptance Rate: 27.9%
+- Yield Rate: 21.9%
 - Enrolled (1L): 109
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 1
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $26,612

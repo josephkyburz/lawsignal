@@ -16,7 +16,13 @@ canonical_name: University of District of Columbia
 - Median GPA: 3.28 (25th: 3.05, 75th: 3.55)
 - Applicants: 749
 - Acceptance Rate: 37.0%
+- Yield Rate: 26.0%
 - Enrolled (1L): 82
+
+### Retention
+- 1L Attrition: 9.0%
+- Transfers In: 0
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $13,438

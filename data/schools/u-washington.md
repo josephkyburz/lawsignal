@@ -16,7 +16,13 @@ canonical_name: University of Washington
 - Median GPA: 3.76 (25th: 3.60, 75th: 3.86)
 - Applicants: 3,412
 - Acceptance Rate: 19.6%
+- Yield Rate: 30.2%
 - Enrolled (1L): 202
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 1
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $47,073

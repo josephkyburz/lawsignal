@@ -16,7 +16,13 @@ canonical_name: University of North Carolina
 - Median GPA: 3.89 (25th: 3.78, 75th: 3.97)
 - Applicants: 3,459
 - Acceptance Rate: 11.2%
+- Yield Rate: 45.5%
 - Enrolled (1L): 176
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 2
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $31,562

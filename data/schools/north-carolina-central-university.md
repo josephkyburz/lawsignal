@@ -16,7 +16,13 @@ canonical_name: North Carolina Central University
 - Median GPA: 3.31 (25th: 3.05, 75th: 3.56)
 - Applicants: 1,303
 - Acceptance Rate: 39.1%
+- Yield Rate: 25.5%
 - Enrolled (1L): 133
+
+### Retention
+- 1L Attrition: 19.0%
+- Transfers In: 4
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $19,190

@@ -16,7 +16,13 @@ canonical_name: Harvard University
 - Median GPA: 3.96 (25th: 3.89, 75th: 4.00)
 - Applicants: 8,872
 - Acceptance Rate: 9.2%
+- Yield Rate: 59.2%
 - Enrolled (1L): 483
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 37
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $78,692

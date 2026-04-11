@@ -16,7 +16,13 @@ canonical_name: Yale University
 - Median GPA: 3.96 (25th: 3.90, 75th: 4.00)
 - Applicants: 5,562
 - Acceptance Rate: 4.1%
+- Yield Rate: 77.4%
 - Enrolled (1L): 175
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 11
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $78,961

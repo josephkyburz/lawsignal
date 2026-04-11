@@ -16,7 +16,13 @@ canonical_name: Rutgers University
 - Median GPA: 3.66 (25th: 3.35, 75th: 3.82)
 - Applicants: 4,305
 - Acceptance Rate: 33.5%
+- Yield Rate: 33.2%
 - Enrolled (1L): 482
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 8
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $35,607

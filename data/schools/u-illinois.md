@@ -16,7 +16,13 @@ canonical_name: University of Illinois
 - Median GPA: 3.81 (25th: 3.55, 75th: 3.92)
 - Applicants: 2,153
 - Acceptance Rate: 32.9%
+- Yield Rate: 26.4%
 - Enrolled (1L): 188
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 2
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $39,904

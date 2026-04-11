@@ -16,7 +16,13 @@ canonical_name: Cooley Law School
 - Median GPA: 3.09 (25th: 2.67, 75th: 3.45)
 - Applicants: 1,323
 - Acceptance Rate: 52.9%
+- Yield Rate: 33.6%
 - Enrolled (1L): 237
+
+### Retention
+- 1L Attrition: 12.0%
+- Transfers In: 2
+- 1L Transfers Out: 1
 
 ### Cost
 - Living Expenses: $29,972

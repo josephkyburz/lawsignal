@@ -16,7 +16,13 @@ canonical_name: University of South Carolina
 - Median GPA: 3.67 (25th: 3.43, 75th: 3.86)
 - Applicants: 2,114
 - Acceptance Rate: 29.9%
+- Yield Rate: 34.0%
 - Enrolled (1L): 215
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 3
+- 1L Transfers Out: 4
 
 ### Cost
 - Tuition (Resident): $24,022

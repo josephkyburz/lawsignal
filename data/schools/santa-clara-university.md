@@ -16,7 +16,13 @@ canonical_name: Santa Clara University
 - Median GPA: 3.50 (25th: 3.21, 75th: 3.74)
 - Applicants: 2,575
 - Acceptance Rate: 52.6%
+- Yield Rate: 18.7%
 - Enrolled (1L): 253
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 4
+- 1L Transfers Out: 4
 
 ### Cost
 - Living Expenses: $35,618

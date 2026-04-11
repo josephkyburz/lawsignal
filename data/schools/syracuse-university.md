@@ -16,7 +16,13 @@ canonical_name: Syracuse University
 - Median GPA: 3.60 (25th: 3.18, 75th: 3.77)
 - Applicants: 2,752
 - Acceptance Rate: 34.6%
+- Yield Rate: 27.9%
 - Enrolled (1L): 268
+
+### Retention
+- 1L Attrition: 9.0%
+- Transfers In: 2
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $66,940

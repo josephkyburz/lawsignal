@@ -16,7 +16,13 @@ canonical_name: Duquesne University
 - Median GPA: 3.62 (25th: 3.35, 75th: 3.85)
 - Applicants: 1,432
 - Acceptance Rate: 43.2%
+- Yield Rate: 29.6%
 - Enrolled (1L): 183
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 1
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $60,118

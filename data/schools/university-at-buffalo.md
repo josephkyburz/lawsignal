@@ -16,7 +16,13 @@ canonical_name: University at Buffalo
 - Median GPA: 3.71 (25th: 3.51, 75th: 3.88)
 - Applicants: 977
 - Acceptance Rate: 42.4%
+- Yield Rate: 39.4%
 - Enrolled (1L): 163
+
+### Retention
+- 1L Attrition: 10.0%
+- Transfers In: 0
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $29,750

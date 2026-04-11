@@ -16,7 +16,13 @@ canonical_name: Mississippi College
 - Median GPA: 3.37 (25th: 3.03, 75th: 3.73)
 - Applicants: 806
 - Acceptance Rate: 59.8%
+- Yield Rate: 36.3%
 - Enrolled (1L): 178
+
+### Retention
+- 1L Attrition: 17.0%
+- Transfers In: 1
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $39,642

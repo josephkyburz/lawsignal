@@ -16,7 +16,13 @@ canonical_name: Drexel University
 - Median GPA: 3.76 (25th: 3.35, 75th: 3.87)
 - Applicants: 2,689
 - Acceptance Rate: 29.6%
+- Yield Rate: 22.2%
 - Enrolled (1L): 177
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 3
+- 1L Transfers Out: 4
 
 ### Cost
 - Tuition (Resident): $58,850

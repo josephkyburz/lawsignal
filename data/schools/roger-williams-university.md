@@ -16,7 +16,13 @@ canonical_name: Roger Williams University
 - Median GPA: 3.43 (25th: 3.02, 75th: 3.73)
 - Applicants: 1,003
 - Acceptance Rate: 61.3%
+- Yield Rate: 30.2%
 - Enrolled (1L): 188
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 1
+- 1L Transfers Out: 8
 
 ### Cost
 - Tuition (Resident): $49,090

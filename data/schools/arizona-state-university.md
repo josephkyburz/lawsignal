@@ -16,7 +16,13 @@ canonical_name: Arizona State University
 - Median GPA: 3.91 (25th: 3.58, 75th: 3.98)
 - Applicants: 4,610
 - Acceptance Rate: 19.8%
+- Yield Rate: 28.9%
 - Enrolled (1L): 264
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 24
+- 1L Transfers Out: 6
 
 ### Cost
 - Tuition (Resident): $29,833

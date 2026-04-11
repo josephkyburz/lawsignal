@@ -16,7 +16,13 @@ canonical_name: University of Nebraska
 - Median GPA: 3.81 (25th: 3.60, 75th: 3.98)
 - Applicants: 1,096
 - Acceptance Rate: 40.1%
+- Yield Rate: 34.5%
 - Enrolled (1L): 152
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 0
+- 1L Transfers Out: 1
 
 ### Cost
 - Living Expenses: $22,092

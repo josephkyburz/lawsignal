@@ -16,7 +16,13 @@ canonical_name: Brigham Young University
 - Median GPA: 3.95 (25th: 3.82, 75th: 3.98)
 - Applicants: 649
 - Acceptance Rate: 22.8%
+- Yield Rate: 81.1%
 - Enrolled (1L): 120
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 1
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $15,992

@@ -16,7 +16,13 @@ canonical_name: The University of Utah
 - Median GPA: 3.87 (25th: 3.62, 75th: 3.94)
 - Applicants: 1,495
 - Acceptance Rate: 25.3%
+- Yield Rate: 28.0%
 - Enrolled (1L): 106
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 3
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $35,829

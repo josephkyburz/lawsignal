@@ -16,7 +16,13 @@ canonical_name: Seton Hall University
 - Median GPA: 3.71 (25th: 3.51, 75th: 3.86)
 - Applicants: 2,714
 - Acceptance Rate: 34.3%
+- Yield Rate: 32.3%
 - Enrolled (1L): 300
+
+### Retention
+- 1L Attrition: 7.0%
+- Transfers In: 2
+- 1L Transfers Out: 10
 
 ### Cost
 - Tuition (Resident): $71,550

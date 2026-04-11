@@ -16,7 +16,13 @@ canonical_name: The University of Alabama
 - Median GPA: 3.97 (25th: 3.76, 75th: 4.05)
 - Applicants: 1,748
 - Acceptance Rate: 25.6%
+- Yield Rate: 30.6%
 - Enrolled (1L): 137
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 4
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $25,879

@@ -16,7 +16,13 @@ canonical_name: University of California-Los Angeles
 - Median GPA: 3.95 (25th: 3.73, 75th: 4.00)
 - Applicants: 8,623
 - Acceptance Rate: 12.0%
+- Yield Rate: 31.0%
 - Enrolled (1L): 322
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 35
+- 1L Transfers Out: 4
 
 ### Cost
 - Tuition (Resident): $61,862

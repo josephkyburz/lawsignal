@@ -196,6 +196,24 @@ for (const row of firstYearRows) {
   // Build the raw merged payload (for schools_raw_sources)
   const rawPayload = { firstYear: row, tuition, grants, enrollment, faculty, basics, curricular, attrition, transfers };
 
+  // Retention — sum ABA's precomputed 1L academic + other attrition
+  // percentages (reported as integer percents, e.g. 5 meaning 5 %).
+  const academicAttr1l = parseNum(attrition["AcademicAttrition_TotalJD1Percentage"]);
+  const otherAttr1l = parseNum(attrition["OtherAttrition_TotalJD1Percentage"]);
+  const totalAttr1lPct =
+    academicAttr1l != null || otherAttr1l != null
+      ? (academicAttr1l ?? 0) + (otherAttr1l ?? 0)
+      : undefined;
+  const attritionRate1l = totalAttr1lPct != null ? Math.min(totalAttr1lPct / 100, 1.0) : undefined;
+
+  // Transfers — clean integer columns in the transfers sheet.
+  const transferInCount = parseInt2(transfers["TransferIn"]);
+  const transferOut1lCount = parseInt2(transfers["JD1 Transfers Out"]);
+
+  // Yield rate (EnrollOfferRate) is ABA's precomputed offers→enrollment
+  // conversion, reported as an integer percentage.
+  const yieldRate = pctFromInt(row["EnrollOfferRate"]);
+
   // Parse the record
   const record: Record<string, unknown> = {
     school_name: schoolName,
@@ -211,6 +229,7 @@ for (const row of firstYearRows) {
     median_gpa: parseNum(row["All50thPercentileUGPA"]),
     gpa_25th: parseNum(row["All25thPercentileUGPA"]),
     gpa_75th: parseNum(row["All75thPercentileUGPA"]),
+    yield_rate: yieldRate,
 
     // Cost (from tuition) — combine annual tuition + fees
     tuition_resident: addDollars(tuition["FT_Resident_Annual"], tuition["FTRS_AnnualFees"]),
@@ -225,6 +244,11 @@ for (const row of firstYearRows) {
     // Faculty
     full_time_faculty: parseInt2(faculty["FTTotal"]),
     student_faculty_ratio: undefined, // not directly in faculty_resources file
+
+    // Retention (from attrition + transfers sheets)
+    attrition_rate_1l: attritionRate1l,
+    transfer_in_count: transferInCount,
+    transfer_out_1l_count: transferOut1lCount,
   };
 
   // Merge employment data from scrape
@@ -390,6 +414,10 @@ for (const { raw, record, employment, slug } of parsed) {
     ["aba509:pct_full_tuition", r.pct_full_tuition],
     ["aba509:full_time_faculty", r.full_time_faculty],
     ["aba509:student_faculty_ratio", r.student_faculty_ratio],
+    // Cycle dynamics + retention
+    ["aba509:yield_rate", r.yield_rate],
+    ["aba509:attrition_rate", r.attrition_rate_1l],
+    ["aba509:transfer_in_count", r.transfer_in_count],
     // Employment (from scrape)
     ["aba509:employment_biglaw", employmentBiglaw],
     ["aba509:employment_fc", employmentFc],
@@ -439,8 +467,18 @@ for (const { record, employment: emp2, slug } of parsed) {
   if (r.median_gpa) lines.push(`- Median GPA: ${r.median_gpa.toFixed(2)} (25th: ${r.gpa_25th?.toFixed(2) ?? "N/A"}, 75th: ${r.gpa_75th?.toFixed(2) ?? "N/A"})`);
   if (r.total_applicants) lines.push(`- Applicants: ${r.total_applicants.toLocaleString()}`);
   lines.push(`- Acceptance Rate: ${acceptanceRate}%`);
+  if (r.yield_rate != null) lines.push(`- Yield Rate: ${(r.yield_rate * 100).toFixed(1)}%`);
   if (r.total_enrolled) lines.push(`- Enrolled (1L): ${r.total_enrolled}`);
   lines.push("");
+
+  // Retention — only render the section if we have at least one field.
+  if (r.attrition_rate_1l != null || r.transfer_in_count != null || r.transfer_out_1l_count != null) {
+    lines.push("### Retention");
+    if (r.attrition_rate_1l != null) lines.push(`- 1L Attrition: ${(r.attrition_rate_1l * 100).toFixed(1)}%`);
+    if (r.transfer_in_count != null) lines.push(`- Transfers In: ${r.transfer_in_count}`);
+    if (r.transfer_out_1l_count != null) lines.push(`- 1L Transfers Out: ${r.transfer_out_1l_count}`);
+    lines.push("");
+  }
   lines.push("### Cost");
   if (r.tuition_resident) lines.push(`- Tuition (Resident): $${r.tuition_resident.toLocaleString()}`);
   if (r.tuition_nonresident) lines.push(`- Tuition (Non-Resident): $${r.tuition_nonresident.toLocaleString()}`);
@@ -513,6 +551,9 @@ const totalObs = parsed.reduce((sum, p) => {
   if (r.pct_full_tuition != null) count++;
   if (r.full_time_faculty != null) count++;
   if (r.student_faculty_ratio != null) count++;
+  if (r.yield_rate != null) count++;
+  if (r.attrition_rate_1l != null) count++;
+  if (r.transfer_in_count != null) count++;
   return sum + count;
 }, 0);
 

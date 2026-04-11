@@ -16,7 +16,13 @@ canonical_name: Western New England University
 - Median GPA: 3.27 (25th: 2.84, 75th: 3.57)
 - Applicants: 871
 - Acceptance Rate: 51.9%
+- Yield Rate: 24.8%
 - Enrolled (1L): 112
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 1
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $53,020

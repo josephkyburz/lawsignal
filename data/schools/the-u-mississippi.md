@@ -16,7 +16,13 @@ canonical_name: The University of Mississippi
 - Median GPA: 3.68 (25th: 3.44, 75th: 3.87)
 - Applicants: 958
 - Acceptance Rate: 42.0%
+- Yield Rate: 39.5%
 - Enrolled (1L): 160
+
+### Retention
+- 1L Attrition: 5.0%
+- Transfers In: 2
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $19,957

@@ -16,7 +16,13 @@ canonical_name: Suffolk University
 - Median GPA: 3.58 (25th: 3.37, 75th: 3.79)
 - Applicants: 3,481
 - Acceptance Rate: 61.9%
+- Yield Rate: 25.0%
 - Enrolled (1L): 541
+
+### Retention
+- 1L Attrition: 5.0%
+- Transfers In: 2
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $64,046

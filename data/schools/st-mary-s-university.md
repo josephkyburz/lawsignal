@@ -16,7 +16,13 @@ canonical_name: St. Mary's University
 - Median GPA: 3.49 (25th: 3.14, 75th: 3.69)
 - Applicants: 2,906
 - Acceptance Rate: 26.0%
+- Yield Rate: 36.2%
 - Enrolled (1L): 279
+
+### Retention
+- 1L Attrition: 14.0%
+- Transfers In: 5
+- 1L Transfers Out: 8
 
 ### Cost
 - Tuition (Resident): $46,310

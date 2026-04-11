@@ -16,7 +16,13 @@ canonical_name: The University of Tulsa
 - Median GPA: 3.45 (25th: 3.27, 75th: 3.72)
 - Applicants: 509
 - Acceptance Rate: 56.6%
+- Yield Rate: 41.0%
 - Enrolled (1L): 118
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 1
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $32,300

@@ -16,7 +16,13 @@ canonical_name: Pontifical Catholic University of Puerto Rico
 - Median GPA: 3.33 (25th: 2.97, 75th: 3.61)
 - Applicants: 325
 - Acceptance Rate: 61.5%
+- Yield Rate: 80.5%
 - Enrolled (1L): 161
+
+### Retention
+- 1L Attrition: 15.0%
+- Transfers In: 0
+- 1L Transfers Out: 2
 
 ### Cost
 - Living Expenses: $26,644

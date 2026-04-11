@@ -16,7 +16,13 @@ canonical_name: University of Wisconsin
 - Median GPA: 3.81 (25th: 3.61, 75th: 3.93)
 - Applicants: 2,479
 - Acceptance Rate: 19.1%
+- Yield Rate: 46.4%
 - Enrolled (1L): 220
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 9
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $38,186

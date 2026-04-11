@@ -16,7 +16,13 @@ canonical_name: University of Florida
 - Median GPA: 3.91 (25th: 3.70, 75th: 3.97)
 - Applicants: 3,887
 - Acceptance Rate: 16.5%
+- Yield Rate: 35.5%
 - Enrolled (1L): 228
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 13
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $21,804

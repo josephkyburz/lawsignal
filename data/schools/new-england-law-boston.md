@@ -16,7 +16,13 @@ canonical_name: New England Law/Boston
 - Median GPA: 3.37 (25th: 3.06, 75th: 3.68)
 - Applicants: 3,997
 - Acceptance Rate: 61.3%
+- Yield Rate: 18.2%
 - Enrolled (1L): 446
+
+### Retention
+- 1L Attrition: 11.0%
+- Transfers In: 1
+- 1L Transfers Out: 15
 
 ### Cost
 - Tuition (Resident): $63,216

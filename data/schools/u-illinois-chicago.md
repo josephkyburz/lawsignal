@@ -16,7 +16,13 @@ canonical_name: University of Illinois-Chicago
 - Median GPA: 3.40 (25th: 3.13, 75th: 3.64)
 - Applicants: 2,488
 - Acceptance Rate: 52.6%
+- Yield Rate: 28.2%
 - Enrolled (1L): 372
+
+### Retention
+- 1L Attrition: 5.0%
+- Transfers In: 1
+- 1L Transfers Out: 0
 
 ### Cost
 - Living Expenses: $24,976

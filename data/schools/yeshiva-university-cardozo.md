@@ -16,7 +16,13 @@ canonical_name: Yeshiva University Cardozo
 - Median GPA: 3.78 (25th: 3.56, 75th: 3.87)
 - Applicants: 3,833
 - Acceptance Rate: 29.6%
+- Yield Rate: 28.2%
 - Enrolled (1L): 319
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 3
+- 1L Transfers Out: 8
 
 ### Cost
 - Tuition (Resident): $76,458

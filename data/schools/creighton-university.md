@@ -16,7 +16,13 @@ canonical_name: Creighton University
 - Median GPA: 3.51 (25th: 3.14, 75th: 3.74)
 - Applicants: 815
 - Acceptance Rate: 64.5%
+- Yield Rate: 30.4%
 - Enrolled (1L): 160
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 1
+- 1L Transfers Out: 1
 
 ### Cost
 - Living Expenses: $23,400

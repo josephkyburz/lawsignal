@@ -16,7 +16,13 @@ canonical_name: Columbia University
 - Median GPA: 3.92 (25th: 3.85, 75th: 3.98)
 - Applicants: 9,463
 - Acceptance Rate: 11.8%
+- Yield Rate: 36.7%
 - Enrolled (1L): 412
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 50
+- 1L Transfers Out: 4
 
 ### Cost
 - Tuition (Resident): $88,390

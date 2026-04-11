@@ -16,7 +16,13 @@ canonical_name: University of Southern California
 - Median GPA: 3.91 (25th: 3.73, 75th: 3.97)
 - Applicants: 7,204
 - Acceptance Rate: 11.2%
+- Yield Rate: 28.2%
 - Enrolled (1L): 227
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 20
+- 1L Transfers Out: 7
 
 ### Cost
 - Tuition (Resident): $85,948

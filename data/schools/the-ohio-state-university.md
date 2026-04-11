@@ -16,7 +16,13 @@ canonical_name: The Ohio State University
 - Median GPA: 3.91 (25th: 3.64, 75th: 3.97)
 - Applicants: 2,291
 - Acceptance Rate: 24.6%
+- Yield Rate: 28.0%
 - Enrolled (1L): 158
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 5
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $37,263

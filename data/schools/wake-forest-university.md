@@ -16,7 +16,13 @@ canonical_name: Wake Forest University
 - Median GPA: 3.79 (25th: 3.60, 75th: 3.90)
 - Applicants: 2,883
 - Acceptance Rate: 24.6%
+- Yield Rate: 28.3%
 - Enrolled (1L): 201
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 6
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $59,144

@@ -16,7 +16,13 @@ canonical_name: Stetson University
 - Median GPA: 3.63 (25th: 3.42, 75th: 3.81)
 - Applicants: 2,791
 - Acceptance Rate: 36.4%
+- Yield Rate: 32.7%
 - Enrolled (1L): 333
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 1
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $57,017

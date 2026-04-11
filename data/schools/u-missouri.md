@@ -16,7 +16,13 @@ canonical_name: University of Missouri
 - Median GPA: 3.72 (25th: 3.47, 75th: 3.91)
 - Applicants: 798
 - Acceptance Rate: 42.0%
+- Yield Rate: 37.3%
 - Enrolled (1L): 125
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 0
+- 1L Transfers Out: 2
 
 ### Cost
 - Living Expenses: $22,002

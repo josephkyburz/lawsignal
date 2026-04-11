@@ -16,7 +16,13 @@ canonical_name: University of Richmond
 - Median GPA: 3.81 (25th: 3.66, 75th: 3.92)
 - Applicants: 1,738
 - Acceptance Rate: 39.6%
+- Yield Rate: 21.2%
 - Enrolled (1L): 146
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 1
+- 1L Transfers Out: 4
 
 ### Cost
 - Tuition (Resident): $57,700

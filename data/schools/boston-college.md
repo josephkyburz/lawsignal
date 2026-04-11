@@ -16,7 +16,13 @@ canonical_name: Boston College
 - Median GPA: 3.83 (25th: 3.67, 75th: 3.90)
 - Applicants: 7,668
 - Acceptance Rate: 8.5%
+- Yield Rate: 33.2%
 - Enrolled (1L): 216
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 4
+- 1L Transfers Out: 6
 
 ### Cost
 - Tuition (Resident): $72,755

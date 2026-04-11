@@ -16,7 +16,13 @@ canonical_name: University of California-Berkeley
 - Median GPA: 3.92 (25th: 3.84, 75th: 3.99)
 - Applicants: 6,562
 - Acceptance Rate: 14.8%
+- Yield Rate: 35.7%
 - Enrolled (1L): 348
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 44
+- 1L Transfers Out: 10
 
 ### Cost
 - Tuition (Resident): $66,374

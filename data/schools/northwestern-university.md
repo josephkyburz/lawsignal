@@ -16,7 +16,13 @@ canonical_name: Northwestern University
 - Median GPA: 3.96 (25th: 3.76, 75th: 4.00)
 - Applicants: 7,976
 - Acceptance Rate: 12.3%
+- Yield Rate: 25.0%
 - Enrolled (1L): 245
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 38
+- 1L Transfers Out: 4
 
 ### Cost
 - Tuition (Resident): $80,633

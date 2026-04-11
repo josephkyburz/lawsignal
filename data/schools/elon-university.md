@@ -16,7 +16,13 @@ canonical_name: Elon University
 - Median GPA: 3.40 (25th: 3.11, 75th: 3.70)
 - Applicants: 1,107
 - Acceptance Rate: 53.2%
+- Yield Rate: 38.5%
 - Enrolled (1L): 228
+
+### Retention
+- 1L Attrition: 9.0%
+- Transfers In: 0
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $45,333

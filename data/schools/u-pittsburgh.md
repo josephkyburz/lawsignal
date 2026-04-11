@@ -16,7 +16,13 @@ canonical_name: University of Pittsburgh
 - Median GPA: 3.54 (25th: 3.26, 75th: 3.74)
 - Applicants: 1,606
 - Acceptance Rate: 34.9%
+- Yield Rate: 27.7%
 - Enrolled (1L): 155
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 1
+- 1L Transfers Out: 9
 
 ### Cost
 - Tuition (Resident): $41,633

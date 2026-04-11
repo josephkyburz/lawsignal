@@ -16,7 +16,13 @@ canonical_name: Gonzaga University
 - Median GPA: 3.55 (25th: 3.24, 75th: 3.76)
 - Applicants: 1,273
 - Acceptance Rate: 51.1%
+- Yield Rate: 30.9%
 - Enrolled (1L): 201
+
+### Retention
+- 1L Attrition: 7.0%
+- Transfers In: 1
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $58,787

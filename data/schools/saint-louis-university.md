@@ -16,7 +16,13 @@ canonical_name: Saint Louis University
 - Median GPA: 3.61 (25th: 3.37, 75th: 3.83)
 - Applicants: 941
 - Acceptance Rate: 56.4%
+- Yield Rate: 41.4%
 - Enrolled (1L): 221
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 4
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $56,190

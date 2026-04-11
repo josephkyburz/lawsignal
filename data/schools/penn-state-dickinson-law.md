@@ -16,7 +16,13 @@ canonical_name: Penn State Dickinson Law
 - Median GPA: 3.71 (25th: 3.50, 75th: 3.86)
 - Applicants: 1,912
 - Acceptance Rate: 43.0%
+- Yield Rate: 25.3%
 - Enrolled (1L): 208
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 0
+- 1L Transfers Out: 11
 
 ### Cost
 - Tuition (Resident): $60,479

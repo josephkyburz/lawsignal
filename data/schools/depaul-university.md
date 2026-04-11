@@ -16,7 +16,13 @@ canonical_name: DePaul University
 - Median GPA: 3.61 (25th: 3.17, 75th: 3.80)
 - Applicants: 2,643
 - Acceptance Rate: 34.8%
+- Yield Rate: 20.1%
 - Enrolled (1L): 185
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 0
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $55,628

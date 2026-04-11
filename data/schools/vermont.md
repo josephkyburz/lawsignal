@@ -16,7 +16,13 @@ canonical_name: Vermont Law School
 - Median GPA: 3.25 (25th: 2.81, 75th: 3.61)
 - Applicants: 1,553
 - Acceptance Rate: 58.5%
+- Yield Rate: 31.8%
 - Enrolled (1L): 289
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 1
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $56,457

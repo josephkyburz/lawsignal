@@ -16,7 +16,13 @@ canonical_name: Drake University
 - Median GPA: 3.67 (25th: 3.38, 75th: 3.89)
 - Applicants: 788
 - Acceptance Rate: 54.8%
+- Yield Rate: 32.6%
 - Enrolled (1L): 141
+
+### Retention
+- 1L Attrition: 5.0%
+- Transfers In: 0
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $51,390

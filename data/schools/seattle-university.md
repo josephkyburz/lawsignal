@@ -16,7 +16,13 @@ canonical_name: Seattle University
 - Median GPA: 3.60 (25th: 3.22, 75th: 3.80)
 - Applicants: 2,304
 - Acceptance Rate: 38.9%
+- Yield Rate: 23.3%
 - Enrolled (1L): 209
+
+### Retention
+- 1L Attrition: 8.0%
+- Transfers In: 4
+- 1L Transfers Out: 11
 
 ### Cost
 - Living Expenses: $34,161

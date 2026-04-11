@@ -16,7 +16,13 @@ canonical_name: Louisiana State University
 - Median GPA: 3.74 (25th: 3.48, 75th: 3.93)
 - Applicants: 1,253
 - Acceptance Rate: 38.5%
+- Yield Rate: 47.2%
 - Enrolled (1L): 230
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 1
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $23,665

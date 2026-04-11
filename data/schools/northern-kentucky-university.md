@@ -16,7 +16,13 @@ canonical_name: Northern Kentucky University
 - Median GPA: 3.41 (25th: 3.15, 75th: 3.68)
 - Applicants: 661
 - Acceptance Rate: 58.7%
+- Yield Rate: 37.9%
 - Enrolled (1L): 150
+
+### Retention
+- 1L Attrition: 8.0%
+- Transfers In: 0
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $25,392

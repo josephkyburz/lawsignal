@@ -16,7 +16,13 @@ canonical_name: Case Western Reserve University
 - Median GPA: 3.76 (25th: 3.51, 75th: 3.89)
 - Applicants: 2,267
 - Acceptance Rate: 34.8%
+- Yield Rate: 22.6%
 - Enrolled (1L): 178
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 1
+- 1L Transfers Out: 4
 
 ### Cost
 - Tuition (Resident): $65,552

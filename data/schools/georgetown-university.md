@@ -16,7 +16,13 @@ canonical_name: Georgetown University
 - Median GPA: 3.93 (25th: 3.75, 75th: 3.98)
 - Applicants: 13,924
 - Acceptance Rate: 15.7%
+- Yield Rate: 28.7%
 - Enrolled (1L): 629
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 120
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $83,576

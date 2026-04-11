@@ -16,7 +16,13 @@ canonical_name: Loyola Marymount University-Los Angeles
 - Median GPA: 3.74 (25th: 3.52, 75th: 3.89)
 - Applicants: 4,549
 - Acceptance Rate: 26.0%
+- Yield Rate: 28.1%
 - Enrolled (1L): 337
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 13
+- 1L Transfers Out: 10
 
 ### Cost
 - Tuition (Resident): $71,386

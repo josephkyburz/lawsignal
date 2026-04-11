@@ -16,7 +16,13 @@ canonical_name: Villanova University
 - Median GPA: 3.80 (25th: 3.64, 75th: 3.90)
 - Applicants: 2,889
 - Acceptance Rate: 25.9%
+- Yield Rate: 30.8%
 - Enrolled (1L): 231
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 2
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $60,750

@@ -16,7 +16,13 @@ canonical_name: University of Oklahoma
 - Median GPA: 3.73 (25th: 3.42, 75th: 3.88)
 - Applicants: 1,391
 - Acceptance Rate: 33.4%
+- Yield Rate: 42.2%
 - Enrolled (1L): 197
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 5
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $25,013

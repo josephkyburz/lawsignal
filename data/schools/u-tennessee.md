@@ -16,7 +16,13 @@ canonical_name: University of Tennessee
 - Median GPA: 3.89 (25th: 3.67, 75th: 3.95)
 - Applicants: 2,176
 - Acceptance Rate: 24.8%
+- Yield Rate: 25.8%
 - Enrolled (1L): 139
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 2
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $20,562

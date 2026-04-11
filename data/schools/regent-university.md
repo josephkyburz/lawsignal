@@ -16,7 +16,13 @@ canonical_name: Regent University
 - Median GPA: 3.68 (25th: 3.37, 75th: 3.89)
 - Applicants: 537
 - Acceptance Rate: 44.3%
+- Yield Rate: 52.9%
 - Enrolled (1L): 126
+
+### Retention
+- 1L Attrition: 8.0%
+- Transfers In: 0
+- 1L Transfers Out: 3
 
 ### Cost
 - Living Expenses: $32,268

@@ -16,7 +16,13 @@ canonical_name: (Minneapolis) University of St. Thomas
 - Median GPA: 3.72 (25th: 3.46, 75th: 3.88)
 - Applicants: 847
 - Acceptance Rate: 57.6%
+- Yield Rate: 33.6%
 - Enrolled (1L): 164
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 0
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $51,632

@@ -16,7 +16,13 @@ canonical_name: Cleveland State University
 - Median GPA: 3.50 (25th: 3.11, 75th: 3.76)
 - Applicants: 1,733
 - Acceptance Rate: 34.4%
+- Yield Rate: 32.7%
 - Enrolled (1L): 195
+
+### Retention
+- 1L Attrition: 15.0%
+- Transfers In: 2
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $31,566

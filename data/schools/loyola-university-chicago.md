@@ -16,7 +16,13 @@ canonical_name: Loyola University-Chicago
 - Median GPA: 3.70 (25th: 3.55, 75th: 3.83)
 - Applicants: 4,244
 - Acceptance Rate: 28.2%
+- Yield Rate: 24.3%
 - Enrolled (1L): 291
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 1
+- 1L Transfers Out: 13
 
 ### Cost
 - Tuition (Resident): $59,666

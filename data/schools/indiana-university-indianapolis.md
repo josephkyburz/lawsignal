@@ -16,7 +16,13 @@ canonical_name: Indiana University-Indianapolis
 - Median GPA: 3.58 (25th: 3.33, 75th: 3.82)
 - Applicants: 904
 - Acceptance Rate: 55.9%
+- Yield Rate: 54.1%
 - Enrolled (1L): 273
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 5
+- 1L Transfers Out: 1
 
 ### Cost
 - Living Expenses: $23,512

@@ -16,7 +16,13 @@ canonical_name: Jacksonville University
 - Median GPA: 3.48 (25th: 3.28, 75th: 3.68)
 - Applicants: 572
 - Acceptance Rate: 35.1%
+- Yield Rate: 33.3%
 - Enrolled (1L): 67
+
+### Retention
+- 1L Attrition: 7.0%
+- Transfers In: 1
+- 1L Transfers Out: 0
 
 ### Cost
 - Living Expenses: $24,911

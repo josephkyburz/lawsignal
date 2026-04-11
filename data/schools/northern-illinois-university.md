@@ -16,7 +16,13 @@ canonical_name: Northern Illinois University
 - Median GPA: 3.41 (25th: 3.17, 75th: 3.64)
 - Applicants: 951
 - Acceptance Rate: 44.3%
+- Yield Rate: 31.1%
 - Enrolled (1L): 133
+
+### Retention
+- 1L Attrition: 7.0%
+- Transfers In: 4
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $24,067

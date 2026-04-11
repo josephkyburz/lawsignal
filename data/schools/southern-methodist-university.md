@@ -16,7 +16,13 @@ canonical_name: Southern Methodist University
 - Median GPA: 3.81 (25th: 3.52, 75th: 3.92)
 - Applicants: 3,038
 - Acceptance Rate: 24.6%
+- Yield Rate: 34.0%
 - Enrolled (1L): 254
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 8
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $68,686

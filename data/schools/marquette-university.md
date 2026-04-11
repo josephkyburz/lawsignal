@@ -16,7 +16,13 @@ canonical_name: Marquette University
 - Median GPA: 3.70 (25th: 3.50, 75th: 3.83)
 - Applicants: 2,112
 - Acceptance Rate: 22.1%
+- Yield Rate: 46.7%
 - Enrolled (1L): 218
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 1
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $51,970

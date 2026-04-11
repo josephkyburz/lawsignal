@@ -16,7 +16,13 @@ canonical_name: University of Baltimore
 - Median GPA: 3.45 (25th: 3.12, 75th: 3.70)
 - Applicants: 1,299
 - Acceptance Rate: 49.5%
+- Yield Rate: 37.3%
 - Enrolled (1L): 246
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 4
+- 1L Transfers Out: 8
 
 ### Cost
 - Tuition (Resident): $36,418

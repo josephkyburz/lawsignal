@@ -16,7 +16,13 @@ canonical_name: Willamette University
 - Median GPA: 3.48 (25th: 3.22, 75th: 3.70)
 - Applicants: 858
 - Acceptance Rate: 61.4%
+- Yield Rate: 26.4%
 - Enrolled (1L): 139
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 1
+- 1L Transfers Out: 4
 
 ### Cost
 - Tuition (Resident): $56,680

@@ -16,7 +16,13 @@ canonical_name: The George Washington University
 - Median GPA: 3.86 (25th: 3.55, 75th: 3.93)
 - Applicants: 9,718
 - Acceptance Rate: 27.2%
+- Yield Rate: 22.5%
 - Enrolled (1L): 595
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 46
+- 1L Transfers Out: 33
 
 ### Cost
 - Tuition (Resident): $75,420

@@ -16,7 +16,13 @@ canonical_name: Touro University
 - Median GPA: 3.35 (25th: 3.05, 75th: 3.66)
 - Applicants: 1,462
 - Acceptance Rate: 45.6%
+- Yield Rate: 33.3%
 - Enrolled (1L): 222
+
+### Retention
+- 1L Attrition: 8.0%
+- Transfers In: 0
+- 1L Transfers Out: 4
 
 ### Cost
 - Tuition (Resident): $62,150

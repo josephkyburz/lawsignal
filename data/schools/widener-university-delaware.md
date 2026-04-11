@@ -16,7 +16,13 @@ canonical_name: Widener University Delaware Law School
 - Median GPA: 3.33 (25th: 2.95, 75th: 3.60)
 - Applicants: 1,317
 - Acceptance Rate: 59.7%
+- Yield Rate: 35.1%
 - Enrolled (1L): 276
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 0
+- 1L Transfers Out: 2
 
 ### Cost
 - Living Expenses: $25,720

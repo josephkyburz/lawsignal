@@ -16,7 +16,13 @@ canonical_name: Southern University
 - Median GPA: 3.15 (25th: 2.86, 75th: 3.48)
 - Applicants: 1,153
 - Acceptance Rate: 56.5%
+- Yield Rate: 43.1%
 - Enrolled (1L): 297
+
+### Retention
+- 1L Attrition: 11.0%
+- Transfers In: 0
+- 1L Transfers Out: 14
 
 ### Cost
 - Tuition (Resident): $18,832

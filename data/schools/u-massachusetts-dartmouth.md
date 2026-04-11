@@ -16,7 +16,13 @@ canonical_name: University of Massachusetts/Dartmouth
 - Median GPA: 3.36 (25th: 3.10, 75th: 3.69)
 - Applicants: 1,311
 - Acceptance Rate: 52.2%
+- Yield Rate: 20.2%
 - Enrolled (1L): 140
+
+### Retention
+- 1L Attrition: 12.0%
+- Transfers In: 0
+- 1L Transfers Out: 6
 
 ### Cost
 - Tuition (Resident): $33,456

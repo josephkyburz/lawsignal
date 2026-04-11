@@ -16,7 +16,13 @@ canonical_name: Wayne State University
 - Median GPA: 3.89 (25th: 3.56, 75th: 3.95)
 - Applicants: 1,290
 - Acceptance Rate: 24.8%
+- Yield Rate: 40.0%
 - Enrolled (1L): 128
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 3
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $42,594

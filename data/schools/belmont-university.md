@@ -16,7 +16,13 @@ canonical_name: Belmont University
 - Median GPA: 3.84 (25th: 3.66, 75th: 3.94)
 - Applicants: 1,337
 - Acceptance Rate: 37.6%
+- Yield Rate: 27.0%
 - Enrolled (1L): 136
+
+### Retention
+- 1L Attrition: 9.0%
+- Transfers In: 0
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $57,705

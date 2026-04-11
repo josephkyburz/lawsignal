@@ -16,7 +16,13 @@ canonical_name: Ave Maria School of Law
 - Median GPA: 3.36 (25th: 3.07, 75th: 3.66)
 - Applicants: 1,212
 - Acceptance Rate: 46.9%
+- Yield Rate: 26.7%
 - Enrolled (1L): 164
+
+### Retention
+- 1L Attrition: 17.0%
+- Transfers In: 3
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $52,350

@@ -16,7 +16,13 @@ canonical_name: The Catholic University of America
 - Median GPA: 3.68 (25th: 3.46, 75th: 3.85)
 - Applicants: 1,867
 - Acceptance Rate: 32.4%
+- Yield Rate: 29.6%
 - Enrolled (1L): 179
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 1
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $63,280

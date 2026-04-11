@@ -16,7 +16,13 @@ canonical_name: Liberty University
 - Median GPA: 3.54 (25th: 3.36, 75th: 3.81)
 - Applicants: 628
 - Acceptance Rate: 58.8%
+- Yield Rate: 37.4%
 - Enrolled (1L): 140
+
+### Retention
+- 1L Attrition: 10.0%
+- Transfers In: 1
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $45,348

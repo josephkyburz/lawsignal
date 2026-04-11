@@ -16,7 +16,13 @@ canonical_name: Stanford University
 - Median GPA: 3.96 (25th: 3.87, 75th: 4.00)
 - Applicants: 5,526
 - Acceptance Rate: 6.1%
+- Yield Rate: 51.3%
 - Enrolled (1L): 173
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 8
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $79,707

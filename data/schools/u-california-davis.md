@@ -16,7 +16,13 @@ canonical_name: University of California-Davis
 - Median GPA: 3.70 (25th: 3.49, 75th: 3.87)
 - Applicants: 3,912
 - Acceptance Rate: 21.1%
+- Yield Rate: 24.9%
 - Enrolled (1L): 205
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 12
+- 1L Transfers Out: 9
 
 ### Cost
 - Tuition (Resident): $59,870

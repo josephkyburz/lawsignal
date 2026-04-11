@@ -16,7 +16,13 @@ canonical_name: University of Hawaii
 - Median GPA: 3.62 (25th: 3.40, 75th: 3.80)
 - Applicants: 1,654
 - Acceptance Rate: 26.2%
+- Yield Rate: 31.6%
 - Enrolled (1L): 138
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 2
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $24,076

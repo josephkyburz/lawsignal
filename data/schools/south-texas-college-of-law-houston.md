@@ -16,7 +16,13 @@ canonical_name: South Texas College of Law Houston
 - Median GPA: 3.41 (25th: 3.08, 75th: 3.65)
 - Applicants: 2,770
 - Acceptance Rate: 33.6%
+- Yield Rate: 46.6%
 - Enrolled (1L): 437
+
+### Retention
+- 1L Attrition: 5.0%
+- Transfers In: 3
+- 1L Transfers Out: 16
 
 ### Cost
 - Tuition (Resident): $44,960

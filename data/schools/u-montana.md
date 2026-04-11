@@ -16,7 +16,13 @@ canonical_name: University of Montana
 - Median GPA: 3.64 (25th: 3.33, 75th: 3.80)
 - Applicants: 568
 - Acceptance Rate: 51.4%
+- Yield Rate: 32.5%
 - Enrolled (1L): 95
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 0
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $27,512

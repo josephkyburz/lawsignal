@@ -16,7 +16,13 @@ canonical_name: University of City University of New York
 - Median GPA: 3.54 (25th: 3.26, 75th: 3.77)
 - Applicants: 2,300
 - Acceptance Rate: 28.7%
+- Yield Rate: 31.9%
 - Enrolled (1L): 212
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 6
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $16,013

@@ -16,7 +16,13 @@ canonical_name: Temple University
 - Median GPA: 3.76 (25th: 3.59, 75th: 3.90)
 - Applicants: 3,043
 - Acceptance Rate: 24.4%
+- Yield Rate: 31.3%
 - Enrolled (1L): 232
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 4
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $34,137

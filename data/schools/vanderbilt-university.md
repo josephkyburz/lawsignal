@@ -16,7 +16,13 @@ canonical_name: Vanderbilt University
 - Median GPA: 3.91 (25th: 3.77, 75th: 3.97)
 - Applicants: 6,124
 - Acceptance Rate: 13.3%
+- Yield Rate: 20.9%
 - Enrolled (1L): 170
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 13
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $78,799

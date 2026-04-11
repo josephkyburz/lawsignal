@@ -16,7 +16,13 @@ canonical_name: University of Maryland
 - Median GPA: 3.72 (25th: 3.37, 75th: 3.88)
 - Applicants: 2,876
 - Acceptance Rate: 26.1%
+- Yield Rate: 30.5%
 - Enrolled (1L): 229
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 7
+- 1L Transfers Out: 13
 
 ### Cost
 - Tuition (Resident): $40,009

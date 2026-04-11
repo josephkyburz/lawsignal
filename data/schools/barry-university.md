@@ -16,7 +16,13 @@ canonical_name: Barry University
 - Median GPA: 3.23 (25th: 2.93, 75th: 3.48)
 - Applicants: 1,582
 - Acceptance Rate: 55.9%
+- Yield Rate: 29.0%
 - Enrolled (1L): 257
+
+### Retention
+- 1L Attrition: 7.0%
+- Transfers In: 5
+- 1L Transfers Out: 6
 
 ### Cost
 - Tuition (Resident): $43,150

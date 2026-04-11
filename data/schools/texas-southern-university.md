@@ -16,7 +16,13 @@ canonical_name: Texas Southern University
 - Median GPA: 3.33 (25th: 2.99, 75th: 3.62)
 - Applicants: 2,032
 - Acceptance Rate: 33.1%
+- Yield Rate: 30.8%
 - Enrolled (1L): 219
+
+### Retention
+- 1L Attrition: 18.0%
+- Transfers In: 0
+- 1L Transfers Out: 9
 
 ### Cost
 - Tuition (Resident): $21,038

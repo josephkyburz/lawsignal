@@ -16,7 +16,13 @@ canonical_name: Hofstra University
 - Median GPA: 3.65 (25th: 3.35, 75th: 3.83)
 - Applicants: 2,448
 - Acceptance Rate: 40.6%
+- Yield Rate: 26.1%
 - Enrolled (1L): 260
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 4
+- 1L Transfers Out: 6
 
 ### Cost
 - Tuition (Resident): $74,860

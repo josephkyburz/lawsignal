@@ -16,7 +16,13 @@ canonical_name: Florida A&M University
 - Median GPA: 3.48 (25th: 3.18, 75th: 3.74)
 - Applicants: 1,546
 - Acceptance Rate: 34.7%
+- Yield Rate: 33.0%
 - Enrolled (1L): 177
+
+### Retention
+- 1L Attrition: 16.0%
+- Transfers In: 3
+- 1L Transfers Out: 4
 
 ### Cost
 - Living Expenses: $39,030

@@ -16,7 +16,13 @@ canonical_name: Michigan State University
 - Median GPA: 3.73 (25th: 3.47, 75th: 3.87)
 - Applicants: 1,526
 - Acceptance Rate: 26.0%
+- Yield Rate: 37.8%
 - Enrolled (1L): 150
+
+### Retention
+- 1L Attrition: 5.0%
+- Transfers In: 1
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $43,868

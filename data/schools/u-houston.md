@@ -16,7 +16,13 @@ canonical_name: University of Houston
 - Median GPA: 3.79 (25th: 3.56, 75th: 3.90)
 - Applicants: 3,510
 - Acceptance Rate: 23.0%
+- Yield Rate: 30.5%
 - Enrolled (1L): 246
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 25
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $39,222

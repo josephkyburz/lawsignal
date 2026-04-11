@@ -16,7 +16,13 @@ canonical_name: Illinois Institute of Technology Chicago-Kent
 - Median GPA: 3.72 (25th: 3.45, 75th: 3.89)
 - Applicants: 2,212
 - Acceptance Rate: 38.6%
+- Yield Rate: 28.6%
 - Enrolled (1L): 244
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 1
+- 1L Transfers Out: 1
 
 ### Cost
 - Living Expenses: $27,964

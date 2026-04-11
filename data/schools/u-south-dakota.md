@@ -16,7 +16,13 @@ canonical_name: University of South Dakota
 - Median GPA: 3.47 (25th: 3.16, 75th: 3.81)
 - Applicants: 405
 - Acceptance Rate: 62.5%
+- Yield Rate: 32.8%
 - Enrolled (1L): 85
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 1
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $17,113

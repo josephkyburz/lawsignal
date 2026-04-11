@@ -16,7 +16,13 @@ canonical_name: Inter American University of Puerto Rico
 - Median GPA: 3.39 (25th: 3.18, 75th: 3.65)
 - Applicants: 542
 - Acceptance Rate: 50.9%
+- Yield Rate: 74.3%
 - Enrolled (1L): 205
+
+### Retention
+- 1L Attrition: 7.0%
+- Transfers In: 0
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $17,760

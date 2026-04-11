@@ -16,7 +16,13 @@ canonical_name: University of North Texas at Dallas
 - Median GPA: 3.41 (25th: 3.18, 75th: 3.66)
 - Applicants: 1,883
 - Acceptance Rate: 24.2%
+- Yield Rate: 27.9%
 - Enrolled (1L): 127
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 0
+- 1L Transfers Out: 5
 
 ### Cost
 - Living Expenses: $24,638

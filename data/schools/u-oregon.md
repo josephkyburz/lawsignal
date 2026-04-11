@@ -16,7 +16,13 @@ canonical_name: University of Oregon
 - Median GPA: 3.62 (25th: 3.32, 75th: 3.79)
 - Applicants: 1,850
 - Acceptance Rate: 55.0%
+- Yield Rate: 18.2%
 - Enrolled (1L): 185
+
+### Retention
+- 1L Attrition: 7.0%
+- Transfers In: 2
+- 1L Transfers Out: 9
 
 ### Cost
 - Tuition (Resident): $48,612

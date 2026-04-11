@@ -16,7 +16,13 @@ canonical_name: Tulane University
 - Median GPA: 3.67 (25th: 3.47, 75th: 3.81)
 - Applicants: 2,069
 - Acceptance Rate: 40.0%
+- Yield Rate: 28.9%
 - Enrolled (1L): 240
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 0
+- 1L Transfers Out: 7
 
 ### Cost
 - Tuition (Resident): $74,756

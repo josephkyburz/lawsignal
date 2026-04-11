@@ -16,7 +16,13 @@ canonical_name: Pepperdine University
 - Median GPA: 3.85 (25th: 3.61, 75th: 3.94)
 - Applicants: 4,272
 - Acceptance Rate: 23.4%
+- Yield Rate: 22.3%
 - Enrolled (1L): 223
+
+### Retention
+- 1L Attrition: 8.0%
+- Transfers In: 4
+- 1L Transfers Out: 11
 
 ### Cost
 - Tuition (Resident): $73,550

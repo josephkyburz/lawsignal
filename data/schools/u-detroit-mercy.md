@@ -16,7 +16,13 @@ canonical_name: University of Detroit Mercy
 - Median GPA: 3.52 (25th: 3.16, 75th: 3.73)
 - Applicants: 1,478
 - Acceptance Rate: 41.4%
+- Yield Rate: 40.2%
 - Enrolled (1L): 247
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 1
+- 1L Transfers Out: 11
 
 ### Cost
 - Living Expenses: $23,983

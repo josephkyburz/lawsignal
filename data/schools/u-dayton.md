@@ -16,7 +16,13 @@ canonical_name: University of Dayton
 - Median GPA: 3.60 (25th: 3.31, 75th: 3.87)
 - Applicants: 1,611
 - Acceptance Rate: 30.7%
+- Yield Rate: 33.8%
 - Enrolled (1L): 167
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 4
+- 1L Transfers Out: 0
 
 ### Cost
 - Living Expenses: $19,395

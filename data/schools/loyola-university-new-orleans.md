@@ -16,7 +16,13 @@ canonical_name: Loyola University-New Orleans
 - Median GPA: 3.47 (25th: 3.21, 75th: 3.71)
 - Applicants: 1,241
 - Acceptance Rate: 50.9%
+- Yield Rate: 34.8%
 - Enrolled (1L): 223
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 1
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $56,894

@@ -16,7 +16,13 @@ canonical_name: Florida State University
 - Median GPA: 3.93 (25th: 3.60, 75th: 3.99)
 - Applicants: 2,711
 - Acceptance Rate: 16.0%
+- Yield Rate: 35.3%
 - Enrolled (1L): 153
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 17
+- 1L Transfers Out: 0
 
 ### Cost
 - Living Expenses: $23,180

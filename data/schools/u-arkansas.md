@@ -16,7 +16,13 @@ canonical_name: University of Arkansas
 - Median GPA: 3.71 (25th: 3.54, 75th: 3.87)
 - Applicants: 950
 - Acceptance Rate: 26.6%
+- Yield Rate: 53.4%
 - Enrolled (1L): 135
+
+### Retention
+- 1L Attrition: 8.0%
+- Transfers In: 0
+- 1L Transfers Out: 0
 
 ### Cost
 - Living Expenses: $22,194

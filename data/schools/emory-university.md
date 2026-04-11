@@ -16,7 +16,13 @@ canonical_name: Emory University
 - Median GPA: 3.82 (25th: 3.68, 75th: 3.87)
 - Applicants: 3,891
 - Acceptance Rate: 30.1%
+- Yield Rate: 33.2%
 - Enrolled (1L): 391
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 8
+- 1L Transfers Out: 18
 
 ### Cost
 - Tuition (Resident): $70,472

@@ -16,7 +16,13 @@ canonical_name: Fordham University
 - Median GPA: 3.79 (25th: 3.60, 75th: 3.88)
 - Applicants: 8,811
 - Acceptance Rate: 16.2%
+- Yield Rate: 30.3%
 - Enrolled (1L): 433
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 12
+- 1L Transfers Out: 14
 
 ### Cost
 - Tuition (Resident): $79,248

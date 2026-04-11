@@ -16,7 +16,13 @@ canonical_name: University of Georgia
 - Median GPA: 3.92 (25th: 3.70, 75th: 3.97)
 - Applicants: 4,695
 - Acceptance Rate: 12.7%
+- Yield Rate: 31.2%
 - Enrolled (1L): 186
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 4
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $19,502

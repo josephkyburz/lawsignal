@@ -16,7 +16,13 @@ canonical_name: The University of Memphis
 - Median GPA: 3.53 (25th: 3.22, 75th: 3.77)
 - Applicants: 582
 - Acceptance Rate: 41.1%
+- Yield Rate: 40.2%
 - Enrolled (1L): 96
+
+### Retention
+- 1L Attrition: 7.0%
+- Transfers In: 2
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $21,228

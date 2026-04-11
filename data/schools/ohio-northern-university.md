@@ -16,7 +16,13 @@ canonical_name: Ohio Northern University
 - Median GPA: 3.34 (25th: 3.06, 75th: 3.67)
 - Applicants: 1,355
 - Acceptance Rate: 32.0%
+- Yield Rate: 29.8%
 - Enrolled (1L): 129
+
+### Retention
+- 1L Attrition: 15.0%
+- Transfers In: 0
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $33,900

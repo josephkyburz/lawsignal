@@ -16,7 +16,13 @@ canonical_name: Washburn University
 - Median GPA: 3.68 (25th: 3.37, 75th: 3.88)
 - Applicants: 549
 - Acceptance Rate: 46.4%
+- Yield Rate: 53.3%
 - Enrolled (1L): 136
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 1
+- 1L Transfers Out: 4
 
 ### Cost
 - Living Expenses: $17,018

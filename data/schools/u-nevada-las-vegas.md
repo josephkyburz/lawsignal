@@ -16,7 +16,13 @@ canonical_name: University of Nevada-Las Vegas
 - Median GPA: 3.76 (25th: 3.39, 75th: 3.88)
 - Applicants: 1,056
 - Acceptance Rate: 30.8%
+- Yield Rate: 48.0%
 - Enrolled (1L): 156
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 14
+- 1L Transfers Out: 4
 
 ### Cost
 - Tuition (Resident): $33,128

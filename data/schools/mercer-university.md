@@ -16,7 +16,13 @@ canonical_name: Mercer University
 - Median GPA: 3.62 (25th: 3.30, 75th: 3.80)
 - Applicants: 1,184
 - Acceptance Rate: 37.8%
+- Yield Rate: 34.0%
 - Enrolled (1L): 152
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 0
+- 1L Transfers Out: 4
 
 ### Cost
 - Tuition (Resident): $45,082

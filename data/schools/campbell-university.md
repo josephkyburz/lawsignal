@@ -16,7 +16,13 @@ canonical_name: Campbell University
 - Median GPA: 3.51 (25th: 3.21, 75th: 3.77)
 - Applicants: 1,168
 - Acceptance Rate: 50.7%
+- Yield Rate: 33.3%
 - Enrolled (1L): 199
+
+### Retention
+- 1L Attrition: 5.0%
+- Transfers In: 1
+- 1L Transfers Out: 4
 
 ### Cost
 - Tuition (Resident): $52,770

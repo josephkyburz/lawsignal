@@ -16,7 +16,13 @@ canonical_name: Westcliff University Western State
 - Median GPA: 3.36 (25th: 3.03, 75th: 3.62)
 - Applicants: 916
 - Acceptance Rate: 43.7%
+- Yield Rate: 28.2%
 - Enrolled (1L): 113
+
+### Retention
+- 1L Attrition: 14.0%
+- Transfers In: 2
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $55,648

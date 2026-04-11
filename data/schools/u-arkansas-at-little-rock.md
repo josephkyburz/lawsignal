@@ -16,7 +16,13 @@ canonical_name: University of Arkansas at Little Rock
 - Median GPA: 3.41 (25th: 2.98, 75th: 3.72)
 - Applicants: 603
 - Acceptance Rate: 54.9%
+- Yield Rate: 45.3%
 - Enrolled (1L): 152
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 0
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $17,474

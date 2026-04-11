@@ -16,7 +16,13 @@ canonical_name: University of Miami
 - Median GPA: 3.79 (25th: 3.58, 75th: 3.88)
 - Applicants: 4,593
 - Acceptance Rate: 24.6%
+- Yield Rate: 27.0%
 - Enrolled (1L): 306
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 7
+- 1L Transfers Out: 9
 
 ### Cost
 - Tuition (Resident): $69,218

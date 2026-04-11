@@ -16,7 +16,13 @@ canonical_name: University of Cincinnati
 - Median GPA: 3.80 (25th: 3.64, 75th: 3.91)
 - Applicants: 1,353
 - Acceptance Rate: 32.7%
+- Yield Rate: 30.5%
 - Enrolled (1L): 135
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 0
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $24,810

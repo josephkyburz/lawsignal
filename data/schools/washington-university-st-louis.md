@@ -16,7 +16,13 @@ canonical_name: Washington University (St. Louis)
 - Median GPA: 3.96 (25th: 3.58, 75th: 4.00)
 - Applicants: 5,616
 - Acceptance Rate: 19.0%
+- Yield Rate: 24.2%
 - Enrolled (1L): 258
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 20
+- 1L Transfers Out: 6
 
 ### Cost
 - Tuition (Resident): $73,684

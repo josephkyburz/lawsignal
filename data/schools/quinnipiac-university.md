@@ -16,7 +16,13 @@ canonical_name: Quinnipiac University
 - Median GPA: 3.65 (25th: 3.41, 75th: 3.84)
 - Applicants: 1,485
 - Acceptance Rate: 43.1%
+- Yield Rate: 20.8%
 - Enrolled (1L): 133
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 1
+- 1L Transfers Out: 6
 
 ### Cost
 - Tuition (Resident): $57,760

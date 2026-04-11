@@ -16,7 +16,13 @@ canonical_name: University of the Pacific
 - Median GPA: 3.52 (25th: 3.17, 75th: 3.73)
 - Applicants: 1,248
 - Acceptance Rate: 54.4%
+- Yield Rate: 30.5%
 - Enrolled (1L): 212
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 0
+- 1L Transfers Out: 7
 
 ### Cost
 - Tuition (Resident): $63,318

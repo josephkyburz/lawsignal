@@ -16,7 +16,13 @@ canonical_name: New York Law School
 - Median GPA: 3.63 (25th: 3.41, 75th: 3.78)
 - Applicants: 4,114
 - Acceptance Rate: 39.7%
+- Yield Rate: 24.5%
 - Enrolled (1L): 405
+
+### Retention
+- 1L Attrition: 8.0%
+- Transfers In: 0
+- 1L Transfers Out: 6
 
 ### Cost
 - Tuition (Resident): $73,524

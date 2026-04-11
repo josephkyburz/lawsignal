@@ -16,7 +16,13 @@ canonical_name: Duke University
 - Median GPA: 3.91 (25th: 3.83, 75th: 3.96)
 - Applicants: 6,240
 - Acceptance Rate: 12.9%
+- Yield Rate: 27.6%
 - Enrolled (1L): 222
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 0
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $81,829

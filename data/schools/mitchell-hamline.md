@@ -16,7 +16,13 @@ canonical_name: Mitchell/Hamline School of Law
 - Median GPA: 3.29 (25th: 2.96, 75th: 3.60)
 - Applicants: 1,603
 - Acceptance Rate: 51.4%
+- Yield Rate: 43.7%
 - Enrolled (1L): 363
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 7
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $56,300

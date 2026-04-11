@@ -16,7 +16,13 @@ canonical_name: Atlanta's John Marshall Law School
 - Median GPA: 3.13 (25th: 2.78, 75th: 3.49)
 - Applicants: 1,274
 - Acceptance Rate: 32.7%
+- Yield Rate: 32.0%
 - Enrolled (1L): 135
+
+### Retention
+- 1L Attrition: 22.0%
+- Transfers In: 1
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $53,586

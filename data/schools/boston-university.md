@@ -16,7 +16,13 @@ canonical_name: Boston University
 - Median GPA: 3.88 (25th: 3.71, 75th: 3.93)
 - Applicants: 7,892
 - Acceptance Rate: 12.1%
+- Yield Rate: 24.6%
 - Enrolled (1L): 234
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 13
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $71,382

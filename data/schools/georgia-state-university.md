@@ -16,7 +16,13 @@ canonical_name: Georgia State University
 - Median GPA: 3.64 (25th: 3.45, 75th: 3.82)
 - Applicants: 2,450
 - Acceptance Rate: 30.6%
+- Yield Rate: 31.6%
 - Enrolled (1L): 237
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 7
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $17,596

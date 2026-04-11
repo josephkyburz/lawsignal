@@ -16,7 +16,13 @@ canonical_name: University of Louisville
 - Median GPA: 3.67 (25th: 3.32, 75th: 3.90)
 - Applicants: 579
 - Acceptance Rate: 63.4%
+- Yield Rate: 39.2%
 - Enrolled (1L): 145
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 0
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $28,396

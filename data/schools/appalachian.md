@@ -16,7 +16,13 @@ canonical_name: Appalachian School of Law
 - Median GPA: 3.20 (25th: 2.72, 75th: 3.53)
 - Applicants: 732
 - Acceptance Rate: 60.9%
+- Yield Rate: 18.8%
 - Enrolled (1L): 88
+
+### Retention
+- 1L Attrition: 12.0%
+- Transfers In: 0
+- 1L Transfers Out: 9
 
 ### Cost
 - Tuition (Resident): $41,000

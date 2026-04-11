@@ -16,7 +16,13 @@ canonical_name: University of Minnesota
 - Median GPA: 3.88 (25th: 3.62, 75th: 3.95)
 - Applicants: 3,405
 - Acceptance Rate: 26.7%
+- Yield Rate: 24.8%
 - Enrolled (1L): 225
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 7
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $54,118

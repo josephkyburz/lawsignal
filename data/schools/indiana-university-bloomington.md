@@ -16,7 +16,13 @@ canonical_name: Indiana University-Bloomington
 - Median GPA: 3.91 (25th: 3.63, 75th: 3.98)
 - Applicants: 1,831
 - Acceptance Rate: 35.8%
+- Yield Rate: 28.4%
 - Enrolled (1L): 186
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 3
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $38,472

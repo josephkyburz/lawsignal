@@ -16,7 +16,13 @@ canonical_name: University of Colorado
 - Median GPA: 3.81 (25th: 3.62, 75th: 3.91)
 - Applicants: 3,458
 - Acceptance Rate: 27.6%
+- Yield Rate: 20.1%
 - Enrolled (1L): 193
+
+### Retention
+- 1L Attrition: 1.0%
+- Transfers In: 0
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $37,325

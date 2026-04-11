@@ -16,7 +16,13 @@ canonical_name: Albany Law School
 - Median GPA: 3.54 (25th: 3.16, 75th: 3.75)
 - Applicants: 2,638
 - Acceptance Rate: 37.5%
+- Yield Rate: 22.8%
 - Enrolled (1L): 236
+
+### Retention
+- 1L Attrition: 5.0%
+- Transfers In: 0
+- 1L Transfers Out: 7
 
 ### Cost
 - Tuition (Resident): $64,234

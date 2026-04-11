@@ -16,7 +16,13 @@ canonical_name: Texas A&M University
 - Median GPA: 4.00 (25th: 3.67, 75th: 4.00)
 - Applicants: 5,240
 - Acceptance Rate: 12.1%
+- Yield Rate: 19.1%
 - Enrolled (1L): 121
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 6
+- 1L Transfers Out: 2
 
 ### Cost
 - Tuition (Resident): $32,634

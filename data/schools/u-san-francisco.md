@@ -16,7 +16,13 @@ canonical_name: University of San Francisco
 - Median GPA: 3.47 (25th: 3.16, 75th: 3.68)
 - Applicants: 2,100
 - Acceptance Rate: 42.4%
+- Yield Rate: 22.3%
 - Enrolled (1L): 198
+
+### Retention
+- 1L Attrition: 12.0%
+- Transfers In: 3
+- 1L Transfers Out: 7
 
 ### Cost
 - Tuition (Resident): $59,990

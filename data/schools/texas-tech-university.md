@@ -16,7 +16,13 @@ canonical_name: Texas Tech University
 - Median GPA: 3.69 (25th: 3.41, 75th: 3.85)
 - Applicants: 2,011
 - Acceptance Rate: 25.6%
+- Yield Rate: 31.6%
 - Enrolled (1L): 168
+
+### Retention
+- 1L Attrition: 7.0%
+- Transfers In: 4
+- 1L Transfers Out: 3
 
 ### Cost
 - Tuition (Resident): $27,532

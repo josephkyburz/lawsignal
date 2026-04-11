@@ -16,7 +16,13 @@ canonical_name: Washington and Lee University
 - Median GPA: 3.75 (25th: 3.51, 75th: 3.85)
 - Applicants: 2,341
 - Acceptance Rate: 22.7%
+- Yield Rate: 24.1%
 - Enrolled (1L): 128
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 1
+- 1L Transfers Out: 6
 
 ### Cost
 - Tuition (Resident): $59,940

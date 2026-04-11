@@ -16,7 +16,13 @@ canonical_name: Chapman University
 - Median GPA: 3.70 (25th: 3.32, 75th: 3.82)
 - Applicants: 2,514
 - Acceptance Rate: 20.5%
+- Yield Rate: 29.5%
 - Enrolled (1L): 152
+
+### Retention
+- 1L Attrition: 6.0%
+- Transfers In: 5
+- 1L Transfers Out: 0
 
 ### Cost
 - Tuition (Resident): $63,201

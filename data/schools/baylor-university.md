@@ -16,7 +16,13 @@ canonical_name: Baylor University
 - Median GPA: 3.77 (25th: 3.49, 75th: 3.89)
 - Applicants: 3,658
 - Acceptance Rate: 20.6%
+- Yield Rate: 21.9%
 - Enrolled (1L): 165
+
+### Retention
+- 1L Attrition: 2.0%
+- Transfers In: 3
+- 1L Transfers Out: 2
 
 ### Cost
 - Living Expenses: $25,023

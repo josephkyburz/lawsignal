@@ -16,7 +16,13 @@ canonical_name: University of Idaho
 - Median GPA: 3.54 (25th: 3.07, 75th: 3.81)
 - Applicants: 740
 - Acceptance Rate: 66.8%
+- Yield Rate: 39.3%
 - Enrolled (1L): 194
+
+### Retention
+- 1L Attrition: 5.0%
+- Transfers In: 2
+- 1L Transfers Out: 5
 
 ### Cost
 - Tuition (Resident): $27,516

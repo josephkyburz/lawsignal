@@ -16,7 +16,13 @@ canonical_name: University of Maine
 - Median GPA: 3.70 (25th: 3.41, 75th: 3.80)
 - Applicants: 915
 - Acceptance Rate: 37.3%
+- Yield Rate: 27.3%
 - Enrolled (1L): 93
+
+### Retention
+- 1L Attrition: 3.0%
+- Transfers In: 1
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $30,160

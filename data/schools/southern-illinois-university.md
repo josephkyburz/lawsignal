@@ -16,7 +16,13 @@ canonical_name: Southern Illinois University
 - Median GPA: 3.38 (25th: 2.93, 75th: 3.78)
 - Applicants: 724
 - Acceptance Rate: 56.2%
+- Yield Rate: 31.7%
 - Enrolled (1L): 132
+
+### Retention
+- 1L Attrition: 13.0%
+- Transfers In: 0
+- 1L Transfers Out: 2
 
 ### Cost
 - Living Expenses: $18,608

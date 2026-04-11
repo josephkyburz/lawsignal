@@ -60,6 +60,14 @@ export const Aba509RecordSchema = z.object({
   student_faculty_ratio: z.number().positive().optional(),
   full_time_faculty: z.number().int().nonnegative().optional(),
   library_volumes: z.number().int().nonnegative().optional(),
+
+  // Cycle dynamics (admissions)
+  yield_rate: z.number().min(0).max(1).optional(),
+
+  // Retention
+  attrition_rate_1l: z.number().min(0).max(1).optional(),
+  transfer_in_count: z.number().int().nonnegative().optional(),
+  transfer_out_1l_count: z.number().int().nonnegative().optional(),
 });
 
 export type Aba509Record = z.infer<typeof Aba509RecordSchema>;

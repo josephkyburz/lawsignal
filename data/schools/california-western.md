@@ -16,7 +16,13 @@ canonical_name: California Western School of Law
 - Median GPA: 3.50 (25th: 3.16, 75th: 3.66)
 - Applicants: 2,144
 - Acceptance Rate: 46.9%
+- Yield Rate: 23.4%
 - Enrolled (1L): 242
+
+### Retention
+- 1L Attrition: 4.0%
+- Transfers In: 1
+- 1L Transfers Out: 4
 
 ### Cost
 - Tuition (Resident): $64,870

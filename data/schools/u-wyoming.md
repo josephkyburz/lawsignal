@@ -16,7 +16,13 @@ canonical_name: University of Wyoming
 - Median GPA: 3.55 (25th: 3.32, 75th: 3.80)
 - Applicants: 483
 - Acceptance Rate: 35.8%
+- Yield Rate: 41.0%
 - Enrolled (1L): 71
+
+### Retention
+- 1L Attrition: 5.0%
+- Transfers In: 0
+- 1L Transfers Out: 1
 
 ### Cost
 - Living Expenses: $17,600

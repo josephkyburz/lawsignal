@@ -16,7 +16,13 @@ canonical_name: University of Virginia
 - Median GPA: 3.99 (25th: 3.83, 75th: 4.04)
 - Applicants: 6,734
 - Acceptance Rate: 10.2%
+- Yield Rate: 44.1%
 - Enrolled (1L): 302
+
+### Retention
+- 1L Attrition: 0.0%
+- Transfers In: 0
+- 1L Transfers Out: 1
 
 ### Cost
 - Tuition (Resident): $77,900
