@@ -370,8 +370,9 @@ coverage(s, d) = sum(prior_weight[v] for v in d if observed(s, v))
   the overall score **for this school only** — the denominator of
   the overall weighted average adjusts accordingly.
 
-Thresholds are tunable constants in a config file (`scripts/lib/
-scoring_config.ts`, to be created), not hardcoded in `computeScore()`.
+Thresholds are tunable constants in a config file
+(`apps/lawsignal-web/src/lib/scoring_config.ts`), not hardcoded in
+`computeScore()`.
 
 ### 4.3 The "this school can't be ranked" case
 
@@ -428,7 +429,7 @@ an observation.
 - `prior_weight(v)` comes from the `variables` catalog. It is the
   author's prior — "within Employment, bar passage carries roughly
   twice the weight of state clerkship rate." These priors live in
-  `scripts/lib/scoring_config.ts`, reviewable and editable in one
+  `apps/lawsignal-web/src/lib/scoring_config.ts`, reviewable and editable in one
   place.
 - `confidence(obs)` is the D1 row's `confidence` column.
 - `staleness_factor(obs)` is 1.0 for fresh data, 0.5 for stale
@@ -460,7 +461,7 @@ The `undecided` goal uses the Default column. JAG users
 offered the JAG column explicitly; the tool does not infer career
 goal from benefits.
 
-These tables live in `scripts/lib/scoring_config.ts`. Every row
+These tables live in `apps/lawsignal-web/src/lib/scoring_config.ts`. Every row
 needs a comment justifying the weight — this is the intellectual
 audit trail for the algorithm. No undocumented priors.
 
@@ -800,7 +801,7 @@ and run on every PR.
 This doc does not specify:
 
 - **The variable catalog priors.** Those live in
-  `scripts/lib/scoring_config.ts` (to be created) and are editable
+  `apps/lawsignal-web/src/lib/scoring_config.ts` and are editable
   with version control.
 - **The exact UI for weight sliders.** That is a design concern,
   owned by `docs/DESIGN.md`.
