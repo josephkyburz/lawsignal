@@ -572,31 +572,26 @@ export const RANK_BAND_PERCENTILES = {
   }
 })();
 
-(function warnSparseDimensions(): void {
-  // Surface — but do not fail on — dimensions with fewer than 3 variables.
-  // Sparse dimensions are expected during Phase 1 ingestion (only ABA 509
-  // is live); they should fill out as US News, LST, NALP, and school-website
-  // sources land. The warning lives here so future maintainers see it the
-  // moment they import the config in a script.
-  const counts: Record<string, number> = {};
+/**
+ * Count of priors per dimension. Consumers (CLI tools, tests) can use
+ * this to surface sparse dimensions without coupling the config to
+ * node-only APIs. Sparse dimensions (<3 vars) are expected during
+ * Phase 1 ingestion and fill out as later sources land.
+ */
+export function countPriorsByDimension(): Record<Dimension, number> {
+  const counts = {
+    selectivity: 0,
+    employment: 0,
+    cost: 0,
+    geographic: 0,
+    academic: 0,
+    prestige: 0,
+    culture: 0,
+    quality_of_life: 0,
+    growth_fit: 0,
+  } satisfies Record<Dimension, number>;
   for (const v of VARIABLE_PRIORS) {
-    counts[v.dimension] = (counts[v.dimension] ?? 0) + 1;
+    counts[v.dimension] += 1;
   }
-  const dims: Dimension[] = [
-    "selectivity",
-    "employment",
-    "cost",
-    "geographic",
-    "academic",
-    "prestige",
-    "culture",
-    "quality_of_life",
-    "growth_fit",
-  ];
-  const sparse = dims.filter((d) => (counts[d] ?? 0) < 3);
-  if (sparse.length > 0 && typeof process !== "undefined" && process.stderr?.isTTY) {
-    process.stderr.write(
-      `[scoring_config] sparse dimensions (<3 vars from ABA 509 alone): ${sparse.join(", ")}\n`,
-    );
-  }
-})();
+  return counts;
+}
