@@ -546,4 +546,304 @@ Matrix" (85.7). The algorithm above is consistent with the author's
 actual decision — which is the test the algorithm has to pass
 before anyone believes it.
 
+---
+
+## 6. Advanced mode: utility-function scoring
+
+Default mode is the weighted-average above. Advanced mode (opt-in
+toggle in the UI) runs the Considerations Broad utility function:
+
+```
+E[utility] = E[career_payoff - debt_cost]
+           - risk_tolerance × variance_penalty
+           + fit_bonus
+```
+
+Mapping to our dimensions:
+
+- `career_payoff` = normalized composite of Employment Outcomes
+  dimension
+- `debt_cost` = inverse of Cost & Value dimension
+- `variance_penalty` = (100 − bar_passage) + curve_risk_penalty
+  (variables: scholarship rescission probability, curve rigor,
+  attrition rate). Scaled to match the other terms.
+- `fit_bonus` = weighted sum of Culture, Growth & Fit, Quality of
+  Life dimensions
+
+```ts
+advanced_score(s) =
+    w_career    × dimension_score(s, "employment")
+  - w_cost      × (100 - dimension_score(s, "cost"))
+  - risk_tol    × variance_penalty(s)
+  + w_fit       × fit_composite(s)
+```
+
+Advanced mode exists for users who want to think in utility terms.
+It is **not** the default because most users don't, and the
+weighted-average model is easier to reason about. Both modes are
+supported; they produce different rankings; the UI makes the
+choice visible.
+
+Important: advanced mode does not unlock "better" scoring. It
+trades intuitiveness for a different set of assumptions. A user
+who picks advanced mode is telling the tool "I want to think in
+expected utility" — and the tool respects that.
+
+---
+
+## 7. Sensitivity analysis
+
+The sensitivity panel is part of the algorithm, not a UI afterthought.
+It answers three questions:
+
+### 7.1 Weight sensitivity
+
+*"If you re-weighted dimension D by ±20%, which schools move?"*
+
+For each dimension, re-run `computeScore()` with
+`priorities[d] *= 1.2` and with `priorities[d] *= 0.8`. Surface any
+school whose rank changes by more than 3 positions.
+
+Computational cost: 9 dimensions × 2 directions = 18 re-runs. The
+function is pure and fast — acceptable.
+
+### 7.2 Filter sensitivity
+
+*"If you dropped filter F, what would appear?"*
+
+For each active filter, re-run `computeScore()` with that filter
+removed. The diff is the `would_rank` field on the suppressed
+schools in the main output. This is pre-computed whenever filters
+are active, because the suppressed list always shows "what you are
+not seeing."
+
+### 7.3 Dimension necessity
+
+*"Which dimension is actually deciding this for you?"*
+
+Run the Berkeley check from DECISION_ANALYSIS.md programmatically:
+for each dimension, re-compute overall scores with that dimension's
+weight set to 0, and see which schools change rank. The dimension
+whose removal collapses the ranking is the decisive one.
+
+Output shape:
+
+```ts
+type SensitivityReport = {
+  weight_changes: Array<{
+    dimension: Dimension;
+    direction: "+20%" | "-20%";
+    movements: Array<{ school_id: number; delta_rank: number }>;
+  }>;
+  filter_drops: Array<{
+    filter: string;
+    unlocked: SuppressedSchool[];
+  }>;
+  decisive_dimension: Dimension | null;  // the tiebreaker
+};
+```
+
+The decisive dimension is surfaced to the user as:
+
+> "Your ranking is mostly driven by **Growth & Fit**. If you weighted
+> it 15 points lower, Vanderbilt would move into a tie with Berkeley."
+
+This is the editorial punch the tool delivers. It is the mom-rule
+operationalized: help the user see what actually matters to them
+before they fall in love with a specific answer.
+
+---
+
+## 8. Editability
+
+Every score the user sees is editable. This is not a fallback —
+it is a core feature.
+
+### 8.1 What can be edited
+
+- Individual dimension scores per school
+- Individual variable scores per school (advanced)
+- Per-school notes (free text)
+- Per-dimension prior weights (advanced, global)
+
+### 8.2 How edits interact with re-computation
+
+Edited scores are **stored separately** from computed scores, in
+localStorage under keys like `ls_override_<school_id>_<dimension>`.
+When `computeScore()` runs, it checks for overrides and uses them
+instead of the computed value.
+
+- Overrides are per-user (localStorage).
+- Overrides survive re-ingestion of source data — a user who
+  decided Berkeley's culture was a 95 is not going to have that
+  overwritten by a new NALP drop.
+- Overrides are visible in the UI with a distinct visual marker
+  and a "reset to computed" affordance.
+
+### 8.3 What cannot be edited
+
+- Hard filter thresholds (the user can change them, but they are
+  not "overrides" — they are filter configuration)
+- Cohort percentiles (these are cohort-wide and global)
+- Observation provenance (source URL, confidence, metric year)
+
+The user can override their scores. They cannot override the data.
+
+---
+
+## 9. Reference implementation skeleton
+
+This is the implementation sketch. **Do not copy-paste this into
+code yet** — it is a shape check, not production code. The real
+implementation will live somewhere like
+`apps/lawsignal-web/src/lib/scoring.ts` and will follow the safety
+rule: once written, `computeScore()` can be moved but not modified.
+
+```ts
+// apps/lawsignal-web/src/lib/scoring.ts (planned)
+
+import { SCORING_CONFIG } from "./scoring_config";
+
+export function computeScore(
+  priorities: Priorities,
+  filters: Filters,
+  profile: Profile,
+  schools: School[],
+  variableCatalog: Variable[],
+  overrides: Record<string, number> = {},
+): ScoreResult {
+  // 1. Partition cohort by filters
+  const { passing, suppressed } = applyFilters(schools, filters);
+
+  // 2. Pre-compute cohort distributions per variable (for percentile rank)
+  const distributions = buildCohortDistributions(passing, variableCatalog);
+
+  // 3. Score each passing school
+  const ranked = passing.map((school) => {
+    const dimensions = scoreDimensions(
+      school,
+      variableCatalog,
+      distributions,
+      profile,
+      overrides,
+    );
+    const overall = aggregateOverall(dimensions, priorities);
+    return { school, dimensions, overall };
+  });
+
+  // 4. Sort, band, finalize
+  ranked.sort((a, b) => b.overall - a.overall);
+  const banded = assignRankBands(ranked);
+
+  // 5. For suppressed schools, compute would_rank (what they'd be if filter dropped)
+  const suppressedWithRank = computeWouldRank(suppressed, passing, priorities, profile);
+
+  // 6. Build meta
+  const meta = buildMeta(passing, dimensions, priorities);
+
+  return { ranked: banded, suppressed: suppressedWithRank, meta };
+}
+```
+
+Sub-functions:
+
+- `applyFilters(schools, filters)` — pure. Returns `{passing, suppressed}`.
+- `buildCohortDistributions(schools, catalog)` — pure. Returns a
+  `Map<variable_id, number[]>` of sorted values for percentile
+  lookups.
+- `scoreDimensions(school, catalog, distributions, profile, overrides)`
+  — pure. Returns `Record<Dimension, DimensionScore>`.
+- `aggregateOverall(dimensions, priorities)` — pure. Implements §5.3.
+- `assignRankBands(rankedSchools)` — pure. Implements §5.4.
+- `computeWouldRank(suppressed, passing, priorities, profile)` — pure.
+  Implements §7.2 for the suppressed slice.
+
+Every sub-function is pure and independently testable. The top
+`computeScore()` is the orchestrator, and it is the function the
+safety rule protects.
+
+---
+
+## 10. Test plan
+
+Before `computeScore()` is considered correct, it must pass:
+
+1. **The Berkeley regression**: with the author's priorities from
+   DECISION_ANALYSIS.md, Berkeley ranks ahead of Vanderbilt and
+   Georgetown by approximately the deltas in §5.5.
+2. **The zero-weight test**: if all priorities are 0, the function
+   returns an empty ranked list and a "name what matters" meta flag.
+3. **The single-school test**: a cohort of one school returns that
+   school with overall = mean of its dimension scores (weighted by
+   priorities), not a crash.
+4. **The missing-dimension test**: a school missing Employment
+   entirely is not penalized — its overall is computed on the other
+   8 dimensions.
+5. **The filter-suppression test**: a school failing `max_tuition`
+   is not in `ranked`, is in `suppressed`, and has a `would_rank`
+   that matches a fresh call with that filter dropped.
+6. **The override test**: an override for Berkeley's culture = 40
+   produces a different overall than the computed value.
+7. **The determinism test**: calling `computeScore()` twice with
+   the same inputs produces byte-identical outputs. No `Date.now()`,
+   no `Math.random()`, no ordering instability.
+8. **The sensitivity convergence test**: `SensitivityReport` for
+   the Berkeley case flags `growth_fit` as the decisive dimension.
+
+These tests live at `apps/lawsignal-web/src/lib/__tests__/scoring.test.ts`
+and run on every PR.
+
+---
+
+## 11. What this doc does not do
+
+This doc does not specify:
+
+- **The variable catalog priors.** Those live in
+  `scripts/lib/scoring_config.ts` (to be created) and are editable
+  with version control.
+- **The exact UI for weight sliders.** That is a design concern,
+  owned by `docs/DESIGN.md`.
+- **The storage schema for overrides.** localStorage keys are
+  mentioned above as a convention; the exact naming lives with the
+  frontend implementation.
+- **Per-source ingestion details.** Those live in
+  `scripts/ingest/*.ts` and the per-source runbook skill.
+
+What it does specify: the math, the invariants, the honesty
+constraints, and the test plan. These are the things that must not
+drift as the tool grows.
+
+---
+
+## Appendix A — notation
+
+- `cohort` = the set of ABA-accredited law schools with any data
+- `N` = size of cohort at time of scoring
+- `s` = a school
+- `d` = a dimension (one of the 9 DVs)
+- `v` = a variable (one of ~144 RVs)
+- `obs(s, v)` = the observation of variable `v` for school `s`, if any
+- `normalize(x, c)` = percentile rank of `x` in cohort `c`, 0..100
+- `prior_weight(v)` = author's within-dimension prior for `v`
+- `coverage(s, d)` = fraction of `d`'s prior weight covered by
+  observations for `s`
+- `priorities[d]` = user's weight for dimension `d`, 0..100
+- `overall(s)` = final 0..100 score for school `s`
+
+## Appendix B — open questions
+
+Parked in `.claude/memory/open-questions.md`:
+
+1. Do we expose advanced mode in v1, or save it for v2? Leaning v2.
+2. How do we handle schools where the state bar passage average is
+   itself suppressed (small N)?
+3. Is `target` direction (§3.2) actually needed in v1, or can we
+   defer it to v2?
+4. Do we let users edit variable-level scores, or only dimension-
+   level? Leaning dimension-only for v1.
+5. What is the exact formula for `variance_penalty` in advanced
+   mode? (Considerations Broad is underspecified here.)
+
+
 
