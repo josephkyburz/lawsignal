@@ -424,14 +424,20 @@ export function computeScore(
     rank_band: bands[i]!,
   }));
 
-  // §9 step 5: would_rank for filter-suppressed is filled in by
-  // computeWouldRank in commit 4. Commit 3 leaves it undefined.
+  // §9 step 5: would_rank for filter-suppressed schools. Insufficient-
+  // data schools don't get a would_rank — there's no filter to drop that
+  // would change their situation.
+  const suppressedWithRank = computeWouldRank(
+    passing,
+    suppressed,
+    priorities,
+    profile,
+    variableCatalog,
+    overrides,
+  );
+
   const suppressedFinal: SuppressedSchool[] = [
-    ...suppressed.map((s) => ({
-      school_id: s.school.id,
-      slug: s.school.slug,
-      failed_filters: s.failed_filters,
-    })),
+    ...suppressedWithRank,
     ...insufficientSuppressed.map((s) => ({
       school_id: s.school.id,
       slug: s.school.slug,
@@ -481,15 +487,132 @@ function zeroMissingSummary(): Record<Dimension, number> {
   };
 }
 
+/**
+ * §7 sensitivity analysis — weight sensitivity, filter drops, decisive
+ * dimension detection. Pure function of its arguments; runs computeScore
+ * internally ~(1 + 9×2 + |filters| + 9) times. For 200-school cohorts
+ * this is still well under 100ms.
+ */
 export function computeSensitivity(
-  _priorities: Priorities,
-  _filters: Filters,
-  _profile: Profile,
-  _schools: School[],
-  _variableCatalog: Variable[],
-  _overrides: Overrides = {},
+  priorities: Priorities,
+  filters: Filters,
+  profile: Profile,
+  schools: School[],
+  variableCatalog: Variable[],
+  overrides: Overrides = {},
 ): SensitivityReport {
-  throw new Error("computeSensitivity: not yet implemented (L1-2 commit 1 stub)");
+  const baseline = computeScore(priorities, filters, profile, schools, variableCatalog, overrides);
+  const baselineRanks = new Map<number, number>();
+  for (const r of baseline.ranked) baselineRanks.set(r.school_id, r.rank);
+
+  // ─── §7.1 weight sensitivity ──────────────────────────────────────────
+  const weight_changes: WeightChange[] = [];
+  for (const dim of DIMENSIONS) {
+    if (priorities[dim] === 0) continue; // nothing to perturb
+    for (const [label, mult] of [
+      ["+20%", 1.2] as const,
+      ["-20%", 0.8] as const,
+    ]) {
+      const tweaked: Priorities = { ...priorities, [dim]: priorities[dim] * mult };
+      const result = computeScore(tweaked, filters, profile, schools, variableCatalog, overrides);
+      const movements: Array<{ school_id: number; delta_rank: number }> = [];
+      for (const r of result.ranked) {
+        const base = baselineRanks.get(r.school_id);
+        if (base == null) continue;
+        const delta = r.rank - base;
+        if (Math.abs(delta) > 3) {
+          movements.push({ school_id: r.school_id, delta_rank: delta });
+        }
+      }
+      if (movements.length > 0) {
+        weight_changes.push({ dimension: dim, direction: label, movements });
+      }
+    }
+  }
+
+  // ─── §7.2 filter drops ────────────────────────────────────────────────
+  const filter_drops: FilterDrop[] = [];
+  const baselineRankedIds = new Set(baseline.ranked.map((r) => r.school_id));
+
+  const filterKeys = Object.keys(filters) as Array<keyof Filters>;
+  for (const key of filterKeys) {
+    const value = filters[key];
+    // A filter is "active" only if it's actually set.
+    if (value === undefined) continue;
+    if (Array.isArray(value) && value.length === 0) continue;
+
+    const reduced: Filters = { ...filters };
+    delete reduced[key];
+
+    const result = computeScore(priorities, reduced, profile, schools, variableCatalog, overrides);
+    const unlocked: SuppressedSchool[] = [];
+    for (const r of result.ranked) {
+      if (baselineRankedIds.has(r.school_id)) continue;
+      unlocked.push({
+        school_id: r.school_id,
+        slug: r.slug,
+        failed_filters: [String(key)],
+        would_rank: r.rank,
+      });
+    }
+    if (unlocked.length > 0) {
+      filter_drops.push({ filter: String(key), unlocked });
+    }
+  }
+
+  // ─── §7.3 decisive dimension ──────────────────────────────────────────
+  //
+  // "The dimension whose removal collapses the ranking is the decisive
+  // one." We interpret "collapses" with two signals, tried in order:
+  //
+  //   1. WINNER FLIP: if zeroing a dimension changes the top-ranked
+  //      school, that dimension is definitively decisive. Return it.
+  //   2. GAP COMPRESSION: otherwise, find the dimension whose removal
+  //      most narrows the gap between rank 1 and rank 2 (baseline gap
+  //      minus zeroed gap). Return whichever dim maximizes that
+  //      compression, if any compression is positive. Return null if
+  //      no dimension makes the ranking meaningfully more compressed.
+  //
+  // The two-signal approach handles both §7.3 narratives: a tight race
+  // where one dim is the tiebreaker (Berkeley/Vanderbilt — growth_fit
+  // compresses the gap from 6.65 to 1.65) and a dominant-dim race
+  // where removing one dim flips the winner entirely.
+  let decisive_dimension: Dimension | null = null;
+
+  if (baseline.ranked.length >= 2) {
+    const topBaseline = baseline.ranked[0]!;
+    const secondBaseline = baseline.ranked[1]!;
+    const baselineGap = topBaseline.overall - secondBaseline.overall;
+
+    let bestCompression = 0;
+    let bestDim: Dimension | null = null;
+
+    for (const dim of DIMENSIONS) {
+      if (priorities[dim] === 0) continue;
+
+      const zeroed: Priorities = { ...priorities, [dim]: 0 };
+      const result = computeScore(zeroed, filters, profile, schools, variableCatalog, overrides);
+      if (result.ranked.length < 2) continue;
+
+      // Winner-flip signal.
+      if (result.ranked[0]!.school_id !== topBaseline.school_id) {
+        decisive_dimension = dim;
+        break;
+      }
+
+      // Gap-compression signal.
+      const gap = result.ranked[0]!.overall - result.ranked[1]!.overall;
+      const compression = baselineGap - gap;
+      if (compression > bestCompression) {
+        bestCompression = compression;
+        bestDim = dim;
+      }
+    }
+
+    if (decisive_dimension === null) decisive_dimension = bestDim;
+  }
+
+  return { weight_changes, filter_drops, decisive_dimension };
 }
 
 // ─── §9 sub-functions (stubs) ────────────────────────────────────────────
@@ -806,14 +929,51 @@ export function assignRankBands(
   });
 }
 
+/**
+ * §7.2 filter sensitivity. For each suppressed school, compute what its
+ * rank WOULD be if filters were lifted. Implementation: run a fresh
+ * scoring pass over the combined (passing ∪ suppressed) cohort with NO
+ * filters, sort, and look up each suppressed school's position.
+ *
+ * This does NOT call computeScore() recursively — it inlines just the
+ * scoring pipeline it needs. That keeps the function's work proportional
+ * to the cohort (one extra pass per computeScore() call) and avoids the
+ * zero-weight short-circuit getting in the way.
+ */
 export function computeWouldRank(
-  _suppressed: Array<{ school: School; failed_filters: string[] }>,
-  _priorities: Priorities,
-  _profile: Profile,
-  _variableCatalog: Variable[],
-  _overrides: Overrides,
+  passing: School[],
+  suppressed: Array<{ school: School; failed_filters: string[] }>,
+  priorities: Priorities,
+  profile: Profile,
+  variableCatalog: Variable[],
+  overrides: Overrides,
 ): SuppressedSchool[] {
-  throw new Error("computeWouldRank: not yet implemented (L1-2 commit 1 stub)");
+  if (suppressed.length === 0) return [];
+
+  const allSchools: School[] = [...passing, ...suppressed.map((s) => s.school)];
+  const distributions = buildCohortDistributions(allSchools, variableCatalog);
+
+  type Scored = { school: School; overall: number };
+  const scored: Scored[] = allSchools.map((school) => {
+    const dimensions = scoreDimensions(school, variableCatalog, distributions, profile, overrides);
+    const { overall } = aggregateOverall(dimensions, priorities);
+    return { school, overall };
+  });
+
+  scored.sort((a, b) => {
+    if (b.overall !== a.overall) return b.overall - a.overall;
+    return a.school.slug.localeCompare(b.school.slug);
+  });
+
+  const rankById = new Map<number, number>();
+  scored.forEach((r, i) => rankById.set(r.school.id, i + 1));
+
+  return suppressed.map((s) => ({
+    school_id: s.school.id,
+    slug: s.school.slug,
+    failed_filters: s.failed_filters,
+    would_rank: rankById.get(s.school.id),
+  }));
 }
 
 // ─── Re-exports from scoring_config (convenience) ────────────────────────
