@@ -398,3 +398,152 @@ is non-negotiable:
 The user should never be able to mistake a well-sourced school for
 a thinly-sourced one.
 
+---
+
+## 5. Aggregation
+
+Two levels of aggregation: variables → dimension score, and
+dimension scores → overall score.
+
+### 5.1 Variables → dimension score
+
+For a school `s` and dimension `d`, the dimension score is the
+confidence-weighted average of normalized variable scores, using
+the author's per-variable priors:
+
+```
+effective_weight(v, s) = prior_weight(v)
+                       × confidence(obs(s, v))
+                       × staleness_factor(obs(s, v))
+
+dimension_score(s, d) =
+  Σ [ effective_weight(v, s) × normalize(obs(s, v)) ]
+  ─────────────────────────────────────────────────
+           Σ [ effective_weight(v, s) ]
+```
+
+Where the sums run over variables `v ∈ d` for which the school has
+an observation.
+
+- `prior_weight(v)` comes from the `variables` catalog. It is the
+  author's prior — "within Employment, bar passage carries roughly
+  twice the weight of state clerkship rate." These priors live in
+  `scripts/lib/scoring_config.ts`, reviewable and editable in one
+  place.
+- `confidence(obs)` is the D1 row's `confidence` column.
+- `staleness_factor(obs)` is 1.0 for fresh data, 0.5 for stale
+  (Case C in §4.1).
+- The denominator adjusts automatically when variables are
+  missing, so dimension scores are comparable across schools with
+  different coverage — but the UI still surfaces the coverage gap.
+
+### 5.2 Career-goal reweighting within Employment
+
+The Employment Outcomes dimension is the only dimension whose
+internal weights shift based on profile. This is the
+`career_goal` hook.
+
+Default prior weights within Employment (roughly):
+
+| Variable | Default | BigLaw | Clerkship | PI | JAG |
+|---|---|---|---|---|---|
+| BigLaw+FC rate | 0.25 | 0.45 | 0.15 | 0.05 | 0.10 |
+| Federal clerkship | 0.15 | 0.10 | 0.45 | 0.05 | 0.10 |
+| JD-required rate | 0.20 | 0.15 | 0.15 | 0.20 | 0.25 |
+| Bar passage | 0.15 | 0.10 | 0.05 | 0.15 | 0.20 |
+| PI placement | 0.10 | 0.02 | 0.05 | 0.40 | 0.15 |
+| Government | 0.10 | 0.03 | 0.05 | 0.10 | 0.10 |
+| Unemployment (inv) | 0.05 | 0.15 | 0.10 | 0.05 | 0.10 |
+
+The `undecided` goal uses the Default column. JAG users
+(`military_benefit == "flep"` is a hint but not a guarantee) are
+offered the JAG column explicitly; the tool does not infer career
+goal from benefits.
+
+These tables live in `scripts/lib/scoring_config.ts`. Every row
+needs a comment justifying the weight — this is the intellectual
+audit trail for the algorithm. No undocumented priors.
+
+### 5.3 Dimension scores → overall score
+
+Simple weighted average, where dimensions with coverage below
+0.3 are excluded for the school in question:
+
+```
+active(s) = { d | coverage(s, d) ≥ 0.3 AND priorities[d] > 0 }
+
+overall(s) =
+  Σ [ priorities[d] × dimension_score(s, d) ]   for d in active(s)
+  ───────────────────────────────────────────
+           Σ [ priorities[d] ]                    for d in active(s)
+```
+
+Notes on this formula:
+
+- A school missing an entire dimension (editorial-only) is **not
+  penalized** in the overall. The overall is computed on the
+  dimensions the school has data for. This is the only honest
+  choice: we cannot know whether the missing dimension would have
+  raised or lowered the score, so we exclude it and surface the
+  gap.
+- A dimension the **user** has weighted to 0 is excluded
+  regardless of coverage. This matches the "weight of 0 means
+  exclude entirely" rule from §1.1.
+- Priorities are normalized inside the formula, so the user
+  doesn't have to make them sum to anything. Sliders 0–100 per
+  dimension; the algorithm does the division.
+
+### 5.4 Rank bands
+
+After overall scores are computed, schools are sorted descending
+and assigned to bands. Bands are relative to the cohort, not to
+fixed score thresholds:
+
+| Band | Definition |
+|---|---|
+| **top** | overall ≥ 90th percentile of ranked cohort |
+| **strong** | 75th ≤ overall < 90th |
+| **fit** | 50th ≤ overall < 75th |
+| **consider** | 25th ≤ overall < 50th |
+| **stretch** | below 25th |
+
+Bands are UI sugar, not decision logic. The user sees the number
+and the band; the algorithm uses only the number.
+
+The band names matter. "Reach / target / safety" is the LSAC
+framing and it encodes the prestige trap — it treats rank as the
+only axis. LawSignal's bands are neutral: "fit" doesn't mean
+"middle," it means "this school matches what you said you wanted."
+A school in the `fit` band might be a user's #1 choice if their
+priorities align.
+
+### 5.5 Berkeley worked example
+
+From `docs/DECISION_ANALYSIS.md`, running the author's weights
+through this formula:
+
+```
+priorities = {
+  selectivity: 5, employment: 10, cost: 10, geographic: 10,
+  academic: 10, prestige: 15, culture: 15,
+  quality_of_life: 10, growth_fit: 15
+}
+sum = 100
+
+Berkeley dimension scores (approximate, pending real data):
+  selectivity: 88, employment: 90, cost: 65, geographic: 85,
+  academic: 82, prestige: 92, culture: 90,
+  quality_of_life: 72, growth_fit: 95
+
+overall(Berkeley)
+  = (5×88 + 10×90 + 10×65 + 10×85 + 10×82 + 15×92 + 15×90
+     + 10×72 + 15×95) / 100
+  = 85.7
+```
+
+Matches the worked example in `DECISION_ANALYSIS.md` §"Decision
+Matrix" (85.7). The algorithm above is consistent with the author's
+actual decision — which is the test the algorithm has to pass
+before anyone believes it.
+
+
