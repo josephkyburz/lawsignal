@@ -258,6 +258,72 @@ function getLatestNumeric(school: School, variableId: string): number | null {
   return obs?.value_numeric ?? null;
 }
 
+// ─── §3.1 Percentile rank with tie-aware averaging ───────────────────────
+
+/**
+ * Returns the percentile rank of `value` within the sorted-ascending
+ * `sorted` array, as a 0..100 number.
+ *
+ * Implements §3.1's tie-aware rule: tied values share the average of
+ * their ranks (not the min or max rank). With `sorted = [1, 2, 2, 3]`,
+ * the two `2` values get rank (1 + 2) / 2 = 1.5, which normalizes to
+ * 100 * 1.5 / 3 = 50.
+ *
+ * Edge cases:
+ * - Empty cohort: returns 50 (no information, neutral).
+ * - Single-item cohort (N = 1): returns 50. §3.1's formula divides by
+ *   N-1 = 0, which is undefined; neutral median is the only honest
+ *   answer when there's nothing to rank against.
+ * - Value not found in cohort: falls back to interpolation from the
+ *   number of elements strictly less than `value`.
+ */
+export function percentileRank(value: number, sorted: readonly number[]): number {
+  const n = sorted.length;
+  if (n === 0) return 50;
+  if (n === 1) return 50;
+
+  let lower = 0;
+  let equal = 0;
+  for (const v of sorted) {
+    if (v < value) lower += 1;
+    else if (v === value) equal += 1;
+    else break;
+  }
+
+  // Tie-aware: average rank of the equal block is lower + (equal - 1) / 2.
+  // If `value` isn't in the cohort, `equal` is 0 and we fall back to
+  // `lower - 0.5` (halfway between the adjacent ranks), clamped to [0, n-1].
+  const avgRank =
+    equal > 0 ? lower + (equal - 1) / 2 : Math.max(0, Math.min(n - 1, lower - 0.5));
+
+  return (100 * avgRank) / (n - 1);
+}
+
+/**
+ * §3.2 direction-aware normalization.
+ *
+ * - `higher_better`: raw percentile rank.
+ * - `lower_better`: 100 minus percentile rank.
+ * - `target`: v1 fallback — "closer to cohort median = higher score."
+ *   The full §3.2 target formula takes a profile-supplied target value;
+ *   v1 has no profile fields for target-direction variables (only
+ *   `aba509:class_size` uses target direction today), so we score by
+ *   proximity to the 50th percentile. This is documented as a v1
+ *   simplification; when a profile.target_class_size field lands, this
+ *   branch upgrades to the full §3.2 formula without touching callers.
+ */
+export function normalize(
+  value: number,
+  sorted: readonly number[],
+  direction: Direction,
+): number {
+  const p = percentileRank(value, sorted);
+  if (direction === "higher_better") return p;
+  if (direction === "lower_better") return 100 - p;
+  // target — proximity to median
+  return 100 * (1 - Math.abs(p - 50) / 50);
+}
+
 // ─── Public API ──────────────────────────────────────────────────────────
 
 /**
@@ -271,14 +337,148 @@ function getLatestNumeric(school: School, variableId: string): number | null {
  * @param overrides Optional user overrides keyed by `${school_id}_${dim}`.
  */
 export function computeScore(
-  _priorities: Priorities,
-  _filters: Filters,
-  _profile: Profile,
-  _schools: School[],
-  _variableCatalog: Variable[],
-  _overrides: Overrides = {},
+  priorities: Priorities,
+  filters: Filters,
+  profile: Profile,
+  schools: School[],
+  variableCatalog: Variable[],
+  overrides: Overrides = {},
 ): ScoreResult {
-  throw new Error("computeScore: not yet implemented (L1-2 commit 1 stub)");
+  // §1.1 zero-weight short-circuit: if every priority is 0, return no
+  // ranked list and let the UI surface a "name what matters first" prompt.
+  const totalPriority =
+    priorities.selectivity +
+    priorities.employment +
+    priorities.cost +
+    priorities.geographic +
+    priorities.academic +
+    priorities.prestige +
+    priorities.culture +
+    priorities.quality_of_life +
+    priorities.growth_fit;
+
+  if (totalPriority === 0) {
+    return {
+      ranked: [],
+      suppressed: [],
+      meta: {
+        cohort_size: schools.length,
+        active_dimensions: [],
+        total_observations: 0,
+        missing_data_summary: zeroMissingSummary(),
+      },
+    };
+  }
+
+  // §9 step 1: partition by filters.
+  const { passing, suppressed } = applyFilters(schools, filters);
+
+  // §9 step 2: cohort distributions from the passing set (the reference
+  // cohort IS what the user is scoring against, post-filter).
+  const distributions = buildCohortDistributions(passing, variableCatalog);
+
+  // §9 step 3: score each passing school.
+  type Scored = {
+    school: School;
+    dimensions: Record<Dimension, DimensionScore>;
+    overall: number;
+    active: Dimension[];
+    insufficient: boolean;
+  };
+
+  const scored: Scored[] = [];
+  const insufficientSuppressed: Array<{ school: School; failed_filters: string[] }> = [];
+
+  for (const school of passing) {
+    const dimensions = scoreDimensions(school, variableCatalog, distributions, profile, overrides);
+
+    // §4.3 insufficient data: if 5+ dimensions are editorial-only, this
+    // school cannot be meaningfully ranked. Move to suppressed.
+    const editorialCount = DIMENSIONS.reduce(
+      (n, d) => n + (dimensions[d].is_editorial_only ? 1 : 0),
+      0,
+    );
+    if (editorialCount >= 5) {
+      insufficientSuppressed.push({ school, failed_filters: ["insufficient_data"] });
+      continue;
+    }
+
+    const { overall, active } = aggregateOverall(dimensions, priorities);
+    scored.push({ school, dimensions, overall, active, insufficient: false });
+  }
+
+  // §9 step 4: sort descending by overall, deterministic tie-break on slug.
+  scored.sort((a, b) => {
+    if (b.overall !== a.overall) return b.overall - a.overall;
+    return a.school.slug.localeCompare(b.school.slug);
+  });
+
+  const bands = assignRankBands(scored);
+
+  const ranked: RankedSchool[] = scored.map((r, i) => ({
+    school_id: r.school.id,
+    slug: r.school.slug,
+    overall: r.overall,
+    dimensions: r.dimensions,
+    rank: i + 1,
+    rank_band: bands[i]!,
+  }));
+
+  // §9 step 5: would_rank for filter-suppressed is filled in by
+  // computeWouldRank in commit 4. Commit 3 leaves it undefined.
+  const suppressedFinal: SuppressedSchool[] = [
+    ...suppressed.map((s) => ({
+      school_id: s.school.id,
+      slug: s.school.slug,
+      failed_filters: s.failed_filters,
+    })),
+    ...insufficientSuppressed.map((s) => ({
+      school_id: s.school.id,
+      slug: s.school.slug,
+      failed_filters: s.failed_filters,
+    })),
+  ];
+
+  // §9 step 6: meta.
+  const activeDimSet = new Set<Dimension>();
+  for (const r of scored) for (const d of r.active) activeDimSet.add(d);
+  const activeDimensions = DIMENSIONS.filter((d) => activeDimSet.has(d));
+
+  const totalObservations = passing.reduce((sum, s) => sum + s.observations.length, 0);
+
+  const missingDataSummary = zeroMissingSummary();
+  if (scored.length > 0) {
+    for (const d of DIMENSIONS) {
+      let missing = 0;
+      for (const r of scored) if (r.dimensions[d].is_editorial_only) missing += 1;
+      missingDataSummary[d] = missing / scored.length;
+    }
+  }
+
+  return {
+    ranked,
+    suppressed: suppressedFinal,
+    meta: {
+      cohort_size: schools.length,
+      active_dimensions: activeDimensions,
+      total_observations: totalObservations,
+      missing_data_summary: missingDataSummary,
+    },
+  };
+}
+
+function zeroMissingSummary(): Record<Dimension, number> {
+  return {
+    selectivity: 0,
+    employment: 0,
+    cost: 0,
+    geographic: 0,
+    academic: 0,
+    prestige: 0,
+    culture: 0,
+    quality_of_life: 0,
+    growth_fit: 0,
+  };
 }
 
 export function computeSensitivity(
@@ -403,27 +603,207 @@ export function buildCohortDistributions(
   return distributions;
 }
 
+/**
+ * §5.1 — variables roll up into a dimension score via confidence-and-
+ * staleness-weighted average of normalized variable scores, using
+ * author priors from the catalog. Overrides short-circuit the whole
+ * dimension per §8.
+ *
+ * Employment dimension special case: internal weights come from
+ * CAREER_GOAL_EMPLOYMENT_WEIGHTS keyed by profile.career_goal (§5.2).
+ * Granular ABA 509 sub-cuts not in the §5.2 table keep their catalog
+ * prior_weight as a supplement.
+ *
+ * Missing-data rules (§4.1):
+ *   - Case A (no observation): variable excluded from this school's
+ *     numerator and denominator; observations_used decrements.
+ *   - Case B (confidence < 0.5): §5.1 formula multiplies by confidence
+ *     automatically, so low-confidence observations contribute less.
+ *   - Case C (metric_year < REFERENCE_YEAR - STALENESS_YEARS): effective
+ *     weight further multiplied by 0.5.
+ *
+ * Coverage (§4.2): sum of observed prior_weight divided by sum of all
+ * prior_weight for the dimension. `< 0.3` → editorial-only.
+ *
+ * No imputation. Ever.
+ */
 export function scoreDimensions(
-  _school: School,
-  _variableCatalog: Variable[],
-  _distributions: CohortDistributions,
-  _profile: Profile,
-  _overrides: Overrides,
+  school: School,
+  variableCatalog: Variable[],
+  distributions: CohortDistributions,
+  profile: Profile,
+  overrides: Overrides,
 ): Record<Dimension, DimensionScore> {
-  throw new Error("scoreDimensions: not yet implemented (L1-2 commit 1 stub)");
+  const result = {} as Record<Dimension, DimensionScore>;
+
+  // Group catalog by dimension once.
+  const byDimension = new Map<Dimension, Variable[]>();
+  for (const d of DIMENSIONS) byDimension.set(d, []);
+  for (const v of variableCatalog) byDimension.get(v.dimension)!.push(v);
+
+  for (const dim of DIMENSIONS) {
+    // §8: overrides short-circuit. The user took responsibility for
+    // this score; treat it as fully covered and not editorial-only.
+    const overrideKey = makeOverrideKey(school.id, dim);
+    const overrideValue = overrides[overrideKey];
+    if (overrideValue != null) {
+      const varsInDim = byDimension.get(dim)!;
+      result[dim] = {
+        score: overrideValue,
+        observations_used: 0,
+        observations_expected: varsInDim.length,
+        confidence: 1.0,
+        is_editorial_only: false,
+      };
+      continue;
+    }
+
+    const varsInDim = byDimension.get(dim)!;
+
+    // No catalog variables for this dimension → editorial-only.
+    // This is the normal state for prestige/culture/quality_of_life/
+    // growth_fit until later sources land (see scoring_config.ts
+    // sparse-dimension note).
+    if (varsInDim.length === 0) {
+      result[dim] = {
+        score: 0,
+        observations_used: 0,
+        observations_expected: 0,
+        confidence: 0,
+        is_editorial_only: true,
+      };
+      continue;
+    }
+
+    // Determine per-variable prior weights for this dimension.
+    // Employment uses the career-goal table; every other dimension
+    // uses the catalog's prior_weight directly.
+    const priorWeight = new Map<string, number>();
+    if (dim === "employment") {
+      const goalTable = CAREER_GOAL_EMPLOYMENT_WEIGHTS[profile.career_goal];
+      for (const [varId, w] of Object.entries(goalTable)) {
+        priorWeight.set(varId, w);
+      }
+      // Include catalog sub-cuts not in the §5.2 table with their
+      // author-assigned prior (they supplement, not replace).
+      for (const v of varsInDim) {
+        if (!priorWeight.has(v.id)) priorWeight.set(v.id, v.prior_weight);
+      }
+    } else {
+      for (const v of varsInDim) priorWeight.set(v.id, v.prior_weight);
+    }
+
+    // §4.2 coverage denominator: sum of ALL priors for the dimension,
+    // including variables the school doesn't have. The numerator is
+    // the sum of priors for variables the school DOES have.
+    const totalPriorWeight = Array.from(priorWeight.values()).reduce((a, b) => a + b, 0);
+
+    let numerator = 0;
+    let denominator = 0;
+    let coveredPriorWeight = 0;
+    let observationsUsed = 0;
+    let confidenceAccumulator = 0;
+
+    for (const v of varsInDim) {
+      const prior = priorWeight.get(v.id);
+      if (prior == null || prior === 0) continue;
+
+      const obs = getLatestObservation(school, v.id);
+      if (obs === null) continue; // §4.1 Case A
+      if (obs.value_numeric == null) continue;
+
+      // §5.1 effective weight: prior × confidence × staleness_factor.
+      const staleness =
+        REFERENCE_YEAR - obs.metric_year > STALENESS_YEARS ? 0.5 : 1.0;
+      const effectiveWeight = prior * obs.confidence * staleness;
+      if (effectiveWeight === 0) continue;
+
+      const distribution = distributions.get(v.id) ?? [];
+      const normalized = normalize(obs.value_numeric, distribution, v.direction);
+
+      numerator += effectiveWeight * normalized;
+      denominator += effectiveWeight;
+      coveredPriorWeight += prior;
+      observationsUsed += 1;
+      confidenceAccumulator += obs.confidence;
+    }
+
+    const coverage = totalPriorWeight > 0 ? coveredPriorWeight / totalPriorWeight : 0;
+    const isEditorialOnly = coverage < COVERAGE_THRESHOLDS.partial || denominator === 0;
+
+    result[dim] = {
+      score: denominator > 0 ? numerator / denominator : 0,
+      observations_used: observationsUsed,
+      observations_expected: varsInDim.length,
+      confidence: observationsUsed > 0 ? confidenceAccumulator / observationsUsed : 0,
+      is_editorial_only: isEditorialOnly,
+    };
+  }
+
+  return result;
 }
 
+/**
+ * §5.3 dimension scores → overall. Simple priority-weighted average
+ * over the "active" dimensions:
+ *
+ *   active(s) = { d | !editorial_only(s, d) AND priorities[d] > 0 }
+ *
+ * A dimension missing entirely for this school (editorial-only) is
+ * NOT penalized — it's excluded from both the numerator AND the
+ * denominator. That's the honest choice: we can't know whether the
+ * missing data would have raised or lowered the score.
+ *
+ * Priorities are normalized inside the formula — the user doesn't
+ * have to make them sum to anything.
+ */
 export function aggregateOverall(
-  _dimensions: Record<Dimension, DimensionScore>,
-  _priorities: Priorities,
+  dimensions: Record<Dimension, DimensionScore>,
+  priorities: Priorities,
 ): { overall: number; active: Dimension[] } {
-  throw new Error("aggregateOverall: not yet implemented (L1-2 commit 1 stub)");
+  const active: Dimension[] = [];
+  let numerator = 0;
+  let denominator = 0;
+
+  for (const d of DIMENSIONS) {
+    const priority = priorities[d];
+    if (priority <= 0) continue; // §1.1: weight of 0 means exclude
+    const ds = dimensions[d];
+    if (ds.is_editorial_only) continue; // §5.3: excluded for this school
+
+    active.push(d);
+    numerator += priority * ds.score;
+    denominator += priority;
+  }
+
+  return {
+    overall: denominator > 0 ? numerator / denominator : 0,
+    active,
+  };
 }
 
+/**
+ * §5.4 rank bands. Input is the already-sorted-descending scored list.
+ * Output is a parallel array of band labels. The banding is relative
+ * to the cohort (percentile-of-rank), not fixed score thresholds.
+ *
+ * For index i (0-indexed from the top) in a cohort of n, the
+ * percentile is (n - i) / n — item 0 is the top slice, item n-1 is
+ * the bottom slice.
+ */
 export function assignRankBands(
-  _ranked: Array<{ overall: number }>,
+  ranked: Array<{ overall: number }>,
 ): RankBand[] {
-  throw new Error("assignRankBands: not yet implemented (L1-2 commit 1 stub)");
+  const n = ranked.length;
+  if (n === 0) return [];
+  return ranked.map((_, i) => {
+    const percentile = (n - i) / n;
+    if (percentile >= RANK_BAND_PERCENTILES.top) return "top";
+    if (percentile >= RANK_BAND_PERCENTILES.strong) return "strong";
+    if (percentile >= RANK_BAND_PERCENTILES.fit) return "fit";
+    if (percentile >= RANK_BAND_PERCENTILES.consider) return "consider";
+    return "stretch";
+  });
 }
 
 export function computeWouldRank(
