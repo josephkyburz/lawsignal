@@ -231,6 +231,33 @@ export const DIMENSIONS: readonly Dimension[] = [
 // STALENESS_YEARS window so they never trip case C.
 const REFERENCE_YEAR = new Date().getUTCFullYear();
 
+// ─── Observation helpers ─────────────────────────────────────────────────
+
+/**
+ * §3.4 year alignment: "use the most recent year available for that
+ * school. Do not average across years." Returns the latest observation
+ * for the given variable_id, or null if none exists with a numeric value.
+ */
+export function getLatestObservation(
+  school: School,
+  variableId: string,
+): Observation | null {
+  let latest: Observation | null = null;
+  for (const obs of school.observations) {
+    if (obs.variable_id !== variableId) continue;
+    if (obs.value_numeric == null) continue;
+    if (latest === null || obs.metric_year > latest.metric_year) {
+      latest = obs;
+    }
+  }
+  return latest;
+}
+
+function getLatestNumeric(school: School, variableId: string): number | null {
+  const obs = getLatestObservation(school, variableId);
+  return obs?.value_numeric ?? null;
+}
+
 // ─── Public API ──────────────────────────────────────────────────────────
 
 /**
@@ -272,21 +299,108 @@ export type FilterPartition = {
   suppressed: Array<{ school: School; failed_filters: string[] }>;
 };
 
+/**
+ * §1.2 + "a filter on a variable with no observation is NOT a rejection."
+ *
+ * Evaluates each filter against the school's latest observations. A school
+ * is suppressed if any filter it CAN evaluate fails. A filter the school
+ * has no data for is treated as passing (the honesty rule: we can't reject
+ * a school for data we don't have).
+ *
+ * The `max_annual_tuition` filter uses the LESSER of resident/nonresident
+ * tuition as the effective cost (most permissive for the school — if any
+ * configuration fits within the user's cap, the school qualifies).
+ */
 export function applyFilters(
-  _schools: School[],
-  _filters: Filters,
+  schools: School[],
+  filters: Filters,
 ): FilterPartition {
-  throw new Error("applyFilters: not yet implemented (L1-2 commit 1 stub)");
+  const passing: School[] = [];
+  const suppressed: Array<{ school: School; failed_filters: string[] }> = [];
+
+  for (const school of schools) {
+    const failed: string[] = [];
+
+    if (filters.max_annual_tuition != null) {
+      const resident = getLatestNumeric(school, "aba509:tuition_resident");
+      const nonresident = getLatestNumeric(school, "aba509:tuition_nonresident");
+      const effective =
+        resident != null && nonresident != null
+          ? Math.min(resident, nonresident)
+          : resident ?? nonresident;
+      if (effective != null && effective > filters.max_annual_tuition) {
+        failed.push("max_annual_tuition");
+      }
+    }
+
+    if (filters.min_median_lsat != null) {
+      const lsat = getLatestNumeric(school, "aba509:median_lsat");
+      if (lsat != null && lsat < filters.min_median_lsat) {
+        failed.push("min_median_lsat");
+      }
+    }
+
+    if (filters.max_median_lsat != null) {
+      const lsat = getLatestNumeric(school, "aba509:median_lsat");
+      if (lsat != null && lsat > filters.max_median_lsat) {
+        failed.push("max_median_lsat");
+      }
+    }
+
+    if (filters.min_bar_passage != null) {
+      const bar = getLatestNumeric(school, "aba509:bar_passage_rate");
+      if (bar != null && bar < filters.min_bar_passage) {
+        failed.push("min_bar_passage");
+      }
+    }
+
+    if (filters.required_regions && filters.required_regions.length > 0) {
+      if (!filters.required_regions.includes(school.region)) {
+        failed.push("required_regions");
+      }
+    }
+
+    // required_tier, must_have_vet_community, must_be_pass_fail: no
+    // catalog data yet. Treated as passing per the "no observation is
+    // not a rejection" rule. These will land with later ingestion
+    // sources (US News for tier, school websites for the others).
+
+    if (failed.length > 0) {
+      suppressed.push({ school, failed_filters: failed });
+    } else {
+      passing.push(school);
+    }
+  }
+
+  return { passing, suppressed };
 }
 
 /** Sorted ascending arrays of numeric values per variable_id, for percentile lookups. */
 export type CohortDistributions = Map<string, number[]>;
 
+/**
+ * For each variable in the catalog, collect the latest observation value
+ * from each school that has one, sort ascending, and store. Percentile-
+ * rank lookups in §3.1 consume these sorted arrays. Schools missing the
+ * variable are excluded from the distribution for that variable only
+ * (§3.1: "Schools missing the variable are excluded from cohort for
+ * that variable only").
+ */
 export function buildCohortDistributions(
-  _schools: School[],
-  _variableCatalog: Variable[],
+  schools: School[],
+  variableCatalog: Variable[],
 ): CohortDistributions {
-  throw new Error("buildCohortDistributions: not yet implemented (L1-2 commit 1 stub)");
+  const distributions: CohortDistributions = new Map();
+  for (const v of variableCatalog) {
+    const values: number[] = [];
+    for (const school of schools) {
+      const value = getLatestNumeric(school, v.id);
+      if (value != null) values.push(value);
+    }
+    values.sort((a, b) => a - b);
+    distributions.set(v.id, values);
+  }
+  return distributions;
 }
 
 export function scoreDimensions(
