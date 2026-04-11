@@ -215,3 +215,186 @@ type SuppressedSchool = {
 Every score the user sees has provenance: how many observations fed
 it, how confident those observations were, whether the dimension hit
 coverage threshold. **No score is rendered without its denominator.**
+
+---
+
+## 3. Variable normalization
+
+Every observation is normalized to a 0–100 score **against the
+cohort of ABA-accredited schools** (not against all law schools, not
+against a fixed historical baseline). When new data lands, every
+score can shift — that is correct behavior. The cohort is the
+reference, and the cohort changes.
+
+### 3.1 Default: percentile rank
+
+```
+normalize(value, cohort) = 100 * rank(value in cohort) / (N - 1)
+```
+
+- Ties share the average of their ranks (standard competition
+  ranking would distort aggregation).
+- `rank()` is dense, not sparse. Schools missing the variable are
+  excluded from `cohort` for that variable only.
+- Why percentile over z-score: users intuit "top 10%" faster than
+  "+1.3 standard deviations." Percentile is also robust to outliers
+  (Cooley's tuition doesn't explode Yale's normalized cost).
+- Why percentile over min-max: min-max is destroyed by a single
+  outlier. The ABA cohort has many.
+
+### 3.2 Direction: `higher_better` vs `lower_better` vs `target`
+
+The `direction` field on each variable tells the normalizer which
+way is up.
+
+- **`higher_better`** (default): median LSAT, bar passage, BigLaw
+  placement. Formula as above.
+- **`lower_better`**: tuition, COL, median debt, acceptance rate
+  when used as selectivity proxy, unemployment. Invert the rank:
+  ```
+  normalize_inverse(value, cohort) = 100 - normalize(value, cohort)
+  ```
+- **`target`**: variables where "best" depends on the user. The
+  two in scope today are median GPA band (you don't want a school
+  where you're at the very bottom of the 25th) and class size (some
+  users want intimate, some want big-school resources). Target-mode
+  variables take an additional `target_value` from the profile and
+  score by proximity:
+  ```
+  normalize_target(value, target, cohort) =
+    100 * (1 - |percentile(value) - percentile(target)|)
+  ```
+
+### 3.3 Special cases
+
+A few variables don't want percentile ranking. They are enumerated
+explicitly and treated by hand:
+
+**Tier membership (`prestige:tier`):** T6 → 100, T14 → 88, T20 →
+78, T50 → 65, below → 50. Hard-coded because the user experiences
+tiers as discrete, not continuous.
+
+**Bar passage (`aba509:bar_passage_first_time`):** Floored at state
+average. A school that beats its state average by 5pts gets a
+higher normalized score than a school whose raw rate is higher but
+sits below its state average. Bar passage is meaningful **relative
+to the jurisdiction** (California first-time rates run 20pts lower
+than Iowa).
+```
+bar_score(school) = normalize(
+  school.bar_passage - state_avg(school.state),
+  cohort_adjusted_deltas
+)
+```
+
+**Cost with scholarships (`composite:net_cost`):** Not raw tuition.
+Compute `net = sticker - median_grant × P(grant)` first, then
+normalize as `lower_better`. The Cost & Value dimension always
+prefers net cost to sticker.
+
+**Cost against military benefit:** If `profile.military_benefit ==
+"flep"`, cost is re-scored as a **constraint satisfaction** (does
+the school cap at the FLEP limit?) rather than a gradient. Schools
+that meet the cap all score 100 on the cost sub-variable; schools
+that don't score 0. This is the Berkeley/Vanderbilt tiebreaker from
+`DECISION_ANALYSIS.md` encoded as math: once FLEP is in play, cost
+stops being a gradient for the user who benefits from it.
+
+**Geographic target matching (`composite:target_placement`):** For
+each of `profile.target_regions`, compute the school's placement
+rate into that region. Take the max across targets. Normalize
+percentile against cohort.
+```
+target_placement(school, targets) =
+  max(placement_rate(school, r) for r in targets)
+```
+Users with no target regions get portability score instead:
+percentile of `1 - HHI(placement_by_state)` (broader = better).
+
+### 3.4 Year alignment
+
+When multiple years of an observation exist, use the most recent
+year available for that school. Do not average across years — users
+making decisions today care about last year's bar passage, not a
+5-year smoothed estimate. Year mismatch across the cohort (one
+school has 2024 data, another has 2023) is tolerated; the cohort
+percentile is computed on whatever the latest-per-school values
+are. The `metric_year` field is surfaced in the UI so users can see
+staleness.
+
+---
+
+## 4. Missing data
+
+Missing data is the hardest part of this algorithm and the one
+most likely to corrupt rankings silently. The rule is:
+**missing data never disappears.** It either excludes a variable
+from aggregation (with the user informed), or it marks a dimension
+as editorial-only (with the user informed), or it suppresses the
+school from ranking (with the user informed). Imputation is
+forbidden.
+
+### 4.1 Three cases
+
+**Case A — no observation at all.** The school has zero rows in
+`observations` for this `variable_id`.
+→ Exclude the variable from this school's dimension aggregation.
+→ Decrement `observations_used`; `observations_expected` is
+   unchanged.
+→ Do not impute a mean, median, or prior.
+
+**Case B — low-confidence observation.** `confidence < 0.5`.
+→ Include but downweight: the variable's effective weight becomes
+  `prior_weight × confidence`.
+→ Surface in the UI as a faded number with a hover note.
+
+**Case C — stale observation.** `metric_year < current_year - 3`.
+→ Include but downweight by 0.5.
+→ Stale plus low-confidence compounds: `prior_weight × confidence × 0.5`.
+
+### 4.2 Coverage threshold per dimension
+
+For each school × dimension, define **coverage** as:
+```
+coverage(s, d) = sum(prior_weight[v] for v in d if observed(s, v))
+               / sum(prior_weight[v] for v in d)
+```
+
+- `coverage ≥ 0.6`: dimension renders a quantitative score.
+- `0.3 ≤ coverage < 0.6`: dimension renders a quantitative score
+  but is flagged as "partial" in the UI. The score is still used
+  in the overall.
+- `coverage < 0.3`: dimension is **editorial-only**. No
+  quantitative score is rendered; the school's wiki snippet for
+  that dimension is shown instead. The dimension is excluded from
+  the overall score **for this school only** — the denominator of
+  the overall weighted average adjusts accordingly.
+
+Thresholds are tunable constants in a config file (`scripts/lib/
+scoring_config.ts`, to be created), not hardcoded in `computeScore()`.
+
+### 4.3 The "this school can't be ranked" case
+
+If a school has coverage below 0.3 on 5+ dimensions, it cannot be
+meaningfully ranked against the cohort. It is moved to the
+`suppressed` list with reason `"insufficient_data"` and is not
+shown in the main results. The user can opt in to seeing it via a
+"show data-sparse schools" toggle.
+
+This will happen most often to Puerto Rico schools and a few
+specialty programs early in ingestion, before sources 3–7 land.
+It is expected behavior during Phase 1, not a bug.
+
+### 4.4 The honesty constraint
+
+Every aggregate score in the UI comes with its denominator. This
+is non-negotiable:
+
+- Dimension score: "87 · 12 of 14 variables observed"
+- Overall score: "84 · 7 of 9 dimensions scored"
+- School card: if any dimension is editorial-only, the card shows
+  an "⚠ partial data" ribbon on hover.
+
+The user should never be able to mistake a well-sourced school for
+a thinly-sourced one.
+
