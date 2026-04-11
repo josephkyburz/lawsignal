@@ -11,6 +11,7 @@ export interface SourceDef {
   frequency: string;        // "annual", "biennial", etc.
   data_year: number;         // the year the data pertains to
   fields: string[];          // key fields this source provides
+  priority?: number;         // 1 = authoritative (ABA 509), 2 = supplementary, etc.
   notes?: string;
 }
 
@@ -34,15 +35,20 @@ export const SOURCES: Record<string, SourceDef> = {
     ],
   },
 
-  usnews_2026: {
-    id: "usnews_2026",
-    name: "US News Best Law Schools",
-    description: "The most widely cited law school ranking. Methodology includes peer assessment, lawyer/judge assessment, selectivity, placement, and bar passage.",
+  us_news_2025: {
+    id: "us_news",
+    name: "US News & World Report — Best Law Schools",
+    description: "The most widely cited law school ranking. Methodology weights peer assessment, lawyer/judge assessment, selectivity, placement, bar passage, and debt. Public rankings pages carry overall rank, tier placement, and specialty ranks; detailed assessment scores live behind the Premium subscription and are recorded as null when unobservable.",
     url: "https://www.usnews.com/best-graduate-schools/top-law-schools/law-rankings",
     frequency: "annual",
-    data_year: 2026,
+    data_year: 2025,
+    priority: 2,
     fields: [
-      "usnews_rank", "usnews_peer_score", "usnews_lawyer_score",
+      "overall_rank",
+      "peer_assessment_score",
+      "lawyer_judge_assessment_score",
+      "specialty_rankings",
+      "tier",
     ],
   },
 
